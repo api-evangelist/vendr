@@ -1,0 +1,46 @@
+aid: vendr
+name: Vendr
+description: >-
+  Vendr is a SaaS procurement platform that helps businesses manage software
+  spending. The Vendr API enables developers to power software pricing
+  experiences within their applications, including catalog, pricing, scope, and
+  webhooks capabilities.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - SaaS
+  - Procurement
+  - Pricing
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/vendr/refs/heads/main/apis.yml
+created: '2026-03-16'
+modified: '2026-03-16'
+specificationVersion: '0.19'
+apis:
+  - aid: vendr:vendr
+    name: Vendr API
+    description: >-
+      The Vendr API enables developers to power software pricing experiences
+      within applications, providing access to catalog data, pricing intelligence,
+      scope management, and webhook notifications.
+    humanURL: https://developers.vendr.com/docs/introduction
+    baseURL: https://api.vendr.com
+    tags:
+      - SaaS
+      - Procurement
+      - Pricing
+    properties:
+      - type: Documentation
+        url: https://developers.vendr.com/docs/introduction
+      - type: Getting Started
+        url: https://developers.vendr.com/docs/introduction
+common:
+  - type: Website
+    url: https://www.vendr.com/
+  - type: Documentation
+    url: https://developers.vendr.com/docs/introduction
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
