@@ -10,9 +10,9 @@ position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - SaaS
-  - Procurement
   - Pricing
+  - Procurement
+  - SaaS
 url: >-
   https://raw.githubusercontent.com/api-evangelist/vendr/refs/heads/main/apis.yml
 created: '2026-03-16'
@@ -28,9 +28,9 @@ apis:
     humanURL: https://developers.vendr.com/docs/introduction
     baseURL: https://api.vendr.com
     tags:
-      - SaaS
-      - Procurement
       - Pricing
+      - Procurement
+      - SaaS
     properties:
       - type: Documentation
         url: https://developers.vendr.com/docs/introduction
