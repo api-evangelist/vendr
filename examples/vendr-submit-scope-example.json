@@ -1,0 +1,33 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.vendr.com/v1/scope",
+    "headers": {
+      "X-API-Key": "sk_live_your_api_key_here",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "text": "10 licenses of PagerDuty Enterprise Tier with 200,000 AIOps events, annual contract"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "productId": "prod_pagerduty_enterprise",
+      "productName": "PagerDuty",
+      "company": "PagerDuty",
+      "tier": "Enterprise",
+      "licenses": 10,
+      "usageLimits": [
+        {
+          "metric": "AIOps Events",
+          "value": 200000,
+          "unit": "events/month"
+        }
+      ],
+      "addOns": [],
+      "termMonths": 12,
+      "billingCadence": "annual"
+    }
+  }
+}

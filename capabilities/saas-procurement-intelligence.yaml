@@ -1,0 +1,200 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Vendr SaaS Procurement Intelligence"
+  description: >-
+    Unified workflow capability for SaaS procurement intelligence, enabling
+    procurement teams, finance analysts, and software buyers to research products,
+    benchmark fair pricing from 200,000+ real contracts, structure purchase scopes,
+    and automate procurement event notifications. Combines catalog, pricing, scope,
+    and webhook APIs into a single AI-ready interface.
+  tags:
+    - Vendr
+    - Pricing
+    - Procurement
+    - SaaS
+    - Software Spend Management
+    - Negotiation
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      VENDR_API_KEY: VENDR_API_KEY
+
+capability:
+  consumes:
+    - import: vendr
+      location: ./shared/vendr-openapi.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: vendr-procurement-api
+      description: "Unified REST API for SaaS procurement intelligence and spend management."
+      resources:
+        - path: /v1/products
+          name: products
+          description: "Browse and search software products in the Vendr catalog"
+          operations:
+            - method: GET
+              name: search-products
+              description: "Search for software products and vendors"
+              call: "vendr.search-catalog"
+              with:
+                q: "rest.q"
+                limit: "rest.limit"
+                offset: "rest.offset"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/purchase-scopes
+          name: purchase-scopes
+          description: "Define and structure purchase requirements"
+          operations:
+            - method: POST
+              name: create-purchase-scope
+              description: "Parse natural language purchase requirements into structured scope"
+              call: "vendr.submit-scope"
+              with:
+                text: "rest.text"
+                productId: "rest.productId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/price-estimates
+          name: price-estimates
+          description: "Fair price estimates based on real contract data"
+          operations:
+            - method: POST
+              name: get-price-estimate
+              description: "Get fair price estimate and negotiation insights"
+              call: "vendr.get-pricing-estimate"
+              with:
+                text: "rest.text"
+                productId: "rest.productId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/event-subscriptions
+          name: event-subscriptions
+          description: "Procurement workflow event subscriptions"
+          operations:
+            - method: GET
+              name: list-event-subscriptions
+              description: "List all active event subscriptions"
+              call: "vendr.list-webhooks"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-event-subscription
+              description: "Subscribe to procurement workflow events"
+              call: "vendr.create-webhook"
+              with:
+                url: "rest.url"
+                events: "rest.events"
+                secret: "rest.secret"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/event-subscriptions/{webhookId}
+          name: event-subscription-by-id
+          description: "Manage individual event subscriptions"
+          operations:
+            - method: DELETE
+              name: delete-event-subscription
+              description: "Remove an event subscription"
+              call: "vendr.delete-webhook"
+              with:
+                webhookId: "rest.webhookId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: vendr-procurement-mcp
+      transport: http
+      description: "MCP server for AI-assisted SaaS procurement intelligence and negotiation."
+      tools:
+        - name: search-products
+          description: "Search for software products and vendors in the Vendr catalog"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "vendr.search-catalog"
+          with:
+            q: "tools.q"
+            limit: "tools.limit"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: parse-purchase-scope
+          description: "Parse natural language purchase requirements (e.g. '10 seats of Slack Pro annual') into structured scope"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "vendr.submit-scope"
+          with:
+            text: "tools.text"
+            productId: "tools.productId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-price-benchmark
+          description: "Get a fair price estimate and negotiation insights for a software purchase based on 200,000+ real contracts"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "vendr.get-pricing-estimate"
+          with:
+            text: "tools.text"
+            productId: "tools.productId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-event-subscriptions
+          description: "List all active procurement workflow event subscriptions"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "vendr.list-webhooks"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: subscribe-to-events
+          description: "Subscribe to procurement workflow events (deal closed, workflow updated, pricing changed)"
+          hints:
+            readOnly: false
+            idempotent: false
+          call: "vendr.create-webhook"
+          with:
+            url: "tools.url"
+            events: "tools.events"
+            secret: "tools.secret"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: unsubscribe-from-events
+          description: "Remove a procurement event subscription"
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: "vendr.delete-webhook"
+          with:
+            webhookId: "tools.webhookId"
+          outputParameters:
+            - type: object
+              mapping: "$."

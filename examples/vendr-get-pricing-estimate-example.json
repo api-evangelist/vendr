@@ -1,0 +1,43 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.vendr.com/v1/pricing",
+    "headers": {
+      "X-API-Key": "sk_live_your_api_key_here",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "text": "50 licenses of Salesforce Sales Cloud Enterprise with 100,000 API calls per month, annual billing"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "productId": "prod_salesforce_sales_cloud",
+      "productName": "Salesforce Sales Cloud",
+      "priceRange": {
+        "p25": 62500,
+        "median": 87500,
+        "p75": 112000,
+        "currency": "USD"
+      },
+      "unitPrice": {
+        "amount": 1750,
+        "unit": "per-seat/year",
+        "currency": "USD"
+      },
+      "confidence": 0.94,
+      "sampleSize": 847,
+      "negotiationInsights": {
+        "discountPotential": 23,
+        "leverageTiming": "End of quarter (March, June, September, December) when Salesforce reps have quota pressure",
+        "tips": [
+          "Request multi-year pricing for additional 10-15% discount",
+          "Bundle with Service Cloud for package pricing leverage",
+          "Start negotiation 90 days before renewal date",
+          "Highlight competing CRM evaluations to create urgency"
+        ]
+      }
+    }
+  }
+}

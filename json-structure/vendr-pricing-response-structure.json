@@ -1,0 +1,58 @@
+{
+  "title": "Vendr Pricing Response Structure",
+  "description": "Structural documentation for the Vendr pricing estimate response",
+  "type": "object",
+  "fields": [
+    {
+      "name": "productId",
+      "type": "string",
+      "description": "Unique product identifier from Vendr catalog"
+    },
+    {
+      "name": "productName",
+      "type": "string",
+      "description": "Human-readable software product name"
+    },
+    {
+      "name": "priceRange",
+      "type": "object",
+      "description": "Statistical price distribution from comparable real contracts",
+      "fields": [
+        { "name": "p25", "type": "number", "description": "25th percentile — low end of fair range" },
+        { "name": "median", "type": "number", "description": "Median price — expected fair value" },
+        { "name": "p75", "type": "number", "description": "75th percentile — high end of fair range" },
+        { "name": "currency", "type": "string", "description": "ISO 4217 currency code (default: USD)" }
+      ]
+    },
+    {
+      "name": "unitPrice",
+      "type": "object",
+      "description": "Per-unit price breakdown",
+      "fields": [
+        { "name": "amount", "type": "number", "description": "Unit price value" },
+        { "name": "unit", "type": "string", "description": "Pricing unit e.g. per-seat/year" },
+        { "name": "currency", "type": "string", "description": "Currency code" }
+      ]
+    },
+    {
+      "name": "confidence",
+      "type": "number",
+      "description": "Confidence score 0.0-1.0 based on contract sample size"
+    },
+    {
+      "name": "sampleSize",
+      "type": "integer",
+      "description": "Number of comparable real contracts analyzed"
+    },
+    {
+      "name": "negotiationInsights",
+      "type": "object",
+      "description": "Actionable guidance for negotiating this purchase",
+      "fields": [
+        { "name": "discountPotential", "type": "number", "description": "Typical achievable discount %" },
+        { "name": "leverageTiming", "type": "string", "description": "Best time to negotiate" },
+        { "name": "tips", "type": "array", "items": "string", "description": "Negotiation recommendations" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+title: Vendr Vocabulary
+description: >-
+  Domain vocabulary for Vendr's SaaS procurement intelligence platform. Covers
+  pricing, procurement workflows, contract analytics, and negotiation concepts.
+created: '2026-05-03'
+modified: '2026-05-03'
+terms:
+  - term: OpenPrice API
+    definition: >-
+      Vendr's public API providing access to SaaS pricing intelligence derived
+      from real contract data. Covers catalog, pricing, scope, and webhooks.
+    tags:
+      - API
+      - Pricing
+
+  - term: Catalog
+    definition: >-
+      The Vendr software product catalog containing 20,000+ software products
+      with structured pricing profiles, tiers, and add-on information.
+    tags:
+      - Catalog
+      - Products
+
+  - term: Scope
+    definition: >-
+      A structured definition of purchase requirements, including product tier,
+      seat count, usage limits, add-ons, term length, and billing cadence.
+      Can be generated from natural language input.
+    tags:
+      - Procurement
+      - Requirements
+
+  - term: Fair Price
+    definition: >-
+      The price range derived from analysis of comparable real software contracts.
+      Expressed as p25/median/p75 percentiles with a confidence score.
+    tags:
+      - Pricing
+      - Benchmarking
+
+  - term: Confidence Score
+    definition: >-
+      A 0-1 score indicating how reliable a pricing estimate is, based on the
+      number of comparable contracts available in the Vendr dataset.
+    tags:
+      - Pricing
+      - Analytics
+
+  - term: Sample Size
+    definition: >-
+      The number of real verified software contracts used to generate a
+      specific pricing estimate.
+    tags:
+      - Pricing
+      - Analytics
+
+  - term: Negotiation Insights
+    definition: >-
+      Actionable guidance for negotiating a software purchase, including
+      discount potential, optimal timing, and specific negotiation strategies.
+    tags:
+      - Negotiation
+      - Procurement
+
+  - term: Discount Potential
+    definition: >-
+      The typical percentage discount achievable below list price based on
+      historical deal data for a specific product and scope.
+    tags:
+      - Pricing
+      - Negotiation
+
+  - term: Leverage Timing
+    definition: >-
+      The optimal time period to negotiate with a software vendor to maximize
+      pricing leverage, often aligned with vendor fiscal quarter-end dates.
+    tags:
+      - Negotiation
+      - Strategy
+
+  - term: Tier
+    definition: >-
+      A software product pricing tier (e.g., Starter, Professional, Enterprise)
+      that defines the feature set and typical pricing band.
+    tags:
+      - Catalog
+      - Pricing
+
+  - term: Add-On
+    definition: >-
+      Optional additional products or modules that can be purchased alongside
+      a base software product.
+    tags:
+      - Catalog
+      - Pricing
+
+  - term: P25
+    definition: >-
+      The 25th percentile price from comparable contracts — the low end of the
+      fair price range.
+    tags:
+      - Pricing
+      - Statistics
+
+  - term: Median
+    definition: >-
+      The 50th percentile price from comparable contracts — the expected fair
+      market value.
+    tags:
+      - Pricing
+      - Statistics
+
+  - term: P75
+    definition: >-
+      The 75th percentile price from comparable contracts — the high end of the
+      fair price range.
+    tags:
+      - Pricing
+      - Statistics
+
+  - term: Webhook
+    definition: >-
+      An HTTP callback registered to receive real-time notifications when
+      Vendr procurement events occur (e.g., deal closed, workflow updated).
+    tags:
+      - Webhooks
+      - Events
+      - Integration
+
+  - term: MCP Server
+    definition: >-
+      A Model Context Protocol server exposing Vendr pricing intelligence
+      to AI agents, enabling natural language procurement research.
+    tags:
+      - MCP
+      - AI
+      - Integration
+
+  - term: SaaS Procurement
+    definition: >-
+      The process of researching, evaluating, purchasing, and managing
+      software-as-a-service subscriptions for an organization.
+    tags:
+      - Procurement
+      - SaaS

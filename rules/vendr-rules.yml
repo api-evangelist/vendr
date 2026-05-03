@@ -1,0 +1,115 @@
+extends: spectral:oas
+rules:
+  # Vendr API uses /v1/ prefix on all paths
+  vendr-path-version-prefix:
+    description: All Vendr API paths must be prefixed with /v1/
+    message: "Path '{{value}}' must start with /v1/"
+    severity: error
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/v1/"
+
+  # Vendr API key auth via X-API-Key header
+  vendr-security-defined:
+    description: All operations must require X-API-Key authentication
+    message: Operations must have security defined
+    severity: warn
+    given: "$.paths[*][*]"
+    then:
+      field: security
+      function: truthy
+
+  # Vendr uses kebab-case path segments
+  vendr-path-kebab-case:
+    description: Path segments must use kebab-case
+    message: "Path segment '{{value}}' must use kebab-case (lowercase with hyphens)"
+    severity: warn
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(/v1)(/[a-z0-9]+(-[a-z0-9]+)*(/{[a-zA-Z]+})?)*$"
+
+  # All operations must have operationId
+  vendr-operation-id-required:
+    description: All operations must have an operationId
+    message: Operation must have an operationId
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: operationId
+      function: truthy
+
+  # operationId should be camelCase
+  vendr-operation-id-camel-case:
+    description: operationId should use camelCase
+    message: "operationId '{{value}}' should use camelCase"
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  # All operations need summaries
+  vendr-operation-summary-required:
+    description: All operations must have a summary
+    message: Operation must have a summary
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: summary
+      function: truthy
+
+  # Summaries must be Title Case
+  vendr-summary-title-case:
+    description: Operation summaries must use Title Case
+    message: "Summary '{{value}}' must use Title Case"
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z]*(\\s[A-Z][a-zA-Z]*)*$"
+
+  # Responses must include 401 for authenticated endpoints
+  vendr-401-response-required:
+    description: Authenticated operations must include a 401 response
+    message: Operation must define a 401 Unauthorized response
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].responses"
+    then:
+      field: "401"
+      function: truthy
+
+  # Responses must include 429 rate limit response
+  vendr-429-response-required:
+    description: Operations must document rate limit (429) responses
+    message: Operation must define a 429 Too Many Requests response
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].responses"
+    then:
+      field: "429"
+      function: truthy
+
+  # Info must have contact
+  vendr-info-contact:
+    description: API info must include contact information
+    message: API info must include contact details
+    severity: warn
+    given: "$.info"
+    then:
+      field: contact
+      function: truthy
+
+  # All schemas should have descriptions
+  vendr-schema-description:
+    description: Schema properties should have descriptions
+    message: Schema property should have a description
+    severity: hint
+    given: "$.components.schemas[*].properties[*]"
+    then:
+      field: description
+      function: truthy

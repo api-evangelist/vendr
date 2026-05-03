@@ -1,0 +1,487 @@
+openapi: 3.1.0
+info:
+  title: Vendr OpenPrice API
+  description: >-
+    The Vendr OpenPrice API provides access to real SaaS pricing intelligence
+    derived from 200,000+ verified software contracts across 20,000+ products.
+    Embed fair price estimates, negotiation insights, product catalog data, and
+    purchase scope management into your applications. Rate limits: 250 requests
+    per minute, 150,000 requests per day.
+  version: 1.0.0
+  contact:
+    name: Vendr Developer Support
+    email: developers@vendr.com
+    url: https://developers.vendr.com/docs/introduction
+  termsOfService: https://www.vendr.com/terms-of-service
+  x-logo:
+    url: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+servers:
+  - url: https://api.vendr.com
+    description: Vendr Production API
+tags:
+  - name: Catalog
+    description: Search and retrieve software product catalog data
+  - name: Pricing
+    description: Fair price estimates and negotiation insights
+  - name: Scope
+    description: Define and submit purchase scope requirements
+  - name: Webhooks
+    description: Subscribe to and manage event notifications
+paths:
+  /v1/catalog:
+    get:
+      operationId: searchCatalog
+      summary: Search Catalog
+      description: >-
+        Search for companies and products in the Vendr software catalog.
+        Returns structured product information including pricing profiles
+        and add-ons.
+      tags:
+        - Catalog
+      parameters:
+        - name: q
+          in: query
+          description: Search query string for company or product name
+          required: false
+          schema:
+            type: string
+            example: Salesforce
+        - name: limit
+          in: query
+          description: Maximum number of results to return
+          required: false
+          schema:
+            type: integer
+            default: 20
+            maximum: 100
+        - name: offset
+          in: query
+          description: Pagination offset
+          required: false
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: Catalog search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogSearchResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+  /v1/scope:
+    post:
+      operationId: submitScope
+      summary: Submit Scope
+      description: >-
+        Submit purchase requirements as text or structured data. The scope
+        defines what software you are purchasing including product, tier,
+        licenses, usage limits, and add-ons.
+      tags:
+        - Scope
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScopeRequest'
+      responses:
+        '200':
+          description: Parsed scope with structured purchase requirements
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScopeResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+  /v1/pricing:
+    post:
+      operationId: getPricingEstimate
+      summary: Get Pricing Estimate
+      description: >-
+        Get a fair price estimate and negotiation insights for a software
+        purchase. Returns price ranges (p25, median, p75), confidence scores
+        based on contract sample size, unit pricing, and actionable negotiation
+        guidance.
+      tags:
+        - Pricing
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PricingRequest'
+      responses:
+        '200':
+          description: Pricing estimate with negotiation insights
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PricingResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+  /v1/webhooks:
+    post:
+      operationId: createWebhook
+      summary: Create Webhook
+      description: >-
+        Subscribe to Vendr data processing events by registering a webhook
+        endpoint. Receive real-time notifications for workflow updates,
+        document uploads, comments, and other events.
+      tags:
+        - Webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookRequest'
+      responses:
+        '201':
+          description: Webhook created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+    get:
+      operationId: listWebhooks
+      summary: List Webhooks
+      description: List all registered webhook subscriptions for the current account.
+      tags:
+        - Webhooks
+      responses:
+        '200':
+          description: List of registered webhooks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v1/webhooks/{webhookId}:
+    delete:
+      operationId: deleteWebhook
+      summary: Delete Webhook
+      description: Remove a webhook subscription by ID.
+      tags:
+        - Webhooks
+      parameters:
+        - name: webhookId
+          in: path
+          required: true
+          description: Unique identifier for the webhook subscription
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Webhook deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for authenticating requests. Contact developers@vendr.com to obtain a key.
+  schemas:
+    CatalogProduct:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique product identifier
+        name:
+          type: string
+          description: Product name
+        company:
+          type: string
+          description: Vendor/company name
+        description:
+          type: string
+          description: Product description
+        categories:
+          type: array
+          items:
+            type: string
+          description: Product category tags
+        tiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductTier'
+          description: Available pricing tiers
+        addOns:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductAddOn'
+          description: Available add-on products
+    ProductTier:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+          description: Tier name (e.g., Starter, Professional, Enterprise)
+        description:
+          type: string
+    ProductAddOn:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+    CatalogSearchResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CatalogProduct'
+        total:
+          type: integer
+          description: Total number of matching results
+        limit:
+          type: integer
+        offset:
+          type: integer
+    ScopeRequest:
+      type: object
+      required:
+        - text
+      properties:
+        text:
+          type: string
+          description: >-
+            Natural language description of the purchase scope. Example:
+            "10 licenses of PagerDuty Enterprise Tier with 200,000 AIOps events"
+          example: "10 licenses of Salesforce Sales Cloud Enterprise with 50,000 API calls per month"
+        productId:
+          type: string
+          description: Optional product ID from catalog to constrain scope parsing
+    ScopeResponse:
+      type: object
+      properties:
+        productId:
+          type: string
+        productName:
+          type: string
+        company:
+          type: string
+        tier:
+          type: string
+        licenses:
+          type: integer
+          description: Number of seats/licenses
+        usageLimits:
+          type: array
+          items:
+            $ref: '#/components/schemas/UsageLimit'
+        addOns:
+          type: array
+          items:
+            type: string
+        termMonths:
+          type: integer
+          description: Contract term length in months
+        billingCadence:
+          type: string
+          enum:
+            - monthly
+            - annual
+            - multi-year
+    UsageLimit:
+      type: object
+      properties:
+        metric:
+          type: string
+          description: Usage metric name (e.g., API calls, storage, events)
+        value:
+          type: number
+        unit:
+          type: string
+    PricingRequest:
+      type: object
+      properties:
+        productId:
+          type: string
+          description: Product ID from catalog
+        scope:
+          $ref: '#/components/schemas/ScopeResponse'
+          description: Structured purchase scope (use /v1/scope to generate)
+        text:
+          type: string
+          description: Natural language scope description (alternative to structured scope)
+    PricingResponse:
+      type: object
+      properties:
+        productId:
+          type: string
+        productName:
+          type: string
+        priceRange:
+          $ref: '#/components/schemas/PriceRange'
+        unitPrice:
+          $ref: '#/components/schemas/UnitPrice'
+        confidence:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 1
+          description: Confidence score based on available contract sample size
+        sampleSize:
+          type: integer
+          description: Number of real contracts used for this estimate
+        negotiationInsights:
+          $ref: '#/components/schemas/NegotiationInsights'
+    PriceRange:
+      type: object
+      properties:
+        p25:
+          type: number
+          description: 25th percentile price (low end)
+        median:
+          type: number
+          description: Median price
+        p75:
+          type: number
+          description: 75th percentile price (high end)
+        currency:
+          type: string
+          default: USD
+    UnitPrice:
+      type: object
+      properties:
+        amount:
+          type: number
+        unit:
+          type: string
+          description: Pricing unit (e.g., per-seat/year, per-month)
+        currency:
+          type: string
+          default: USD
+    NegotiationInsights:
+      type: object
+      properties:
+        discountPotential:
+          type: number
+          description: Typical achievable discount percentage
+        leverageTiming:
+          type: string
+          description: Best timing for negotiation leverage
+        tips:
+          type: array
+          items:
+            type: string
+          description: Actionable negotiation recommendations
+    WebhookRequest:
+      type: object
+      required:
+        - url
+        - events
+      properties:
+        url:
+          type: string
+          format: uri
+          description: HTTPS URL to receive webhook payloads
+        events:
+          type: array
+          items:
+            type: string
+            enum:
+              - workflow.updated
+              - document.uploaded
+              - comment.added
+              - deal.closed
+              - pricing.updated
+          description: Event types to subscribe to
+        secret:
+          type: string
+          description: Optional secret for verifying webhook signature
+    WebhookResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique webhook subscription ID
+        url:
+          type: string
+        events:
+          type: array
+          items:
+            type: string
+        createdAt:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+            - active
+            - inactive
+    WebhookListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/WebhookResponse'
+        total:
+          type: integer
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        code:
+          type: integer
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RateLimitExceeded:
+      description: Rate limit exceeded (250/min or 150,000/day)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+security:
+  - ApiKeyAuth: []

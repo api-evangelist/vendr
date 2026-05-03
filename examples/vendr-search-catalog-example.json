@@ -1,0 +1,36 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.vendr.com/v1/catalog?q=Salesforce&limit=5",
+    "headers": {
+      "X-API-Key": "sk_live_your_api_key_here"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "data": [
+        {
+          "id": "prod_salesforce_sales_cloud",
+          "name": "Salesforce Sales Cloud",
+          "company": "Salesforce",
+          "description": "CRM platform for sales teams to manage leads, opportunities, and accounts.",
+          "categories": ["CRM", "Sales", "SaaS"],
+          "tiers": [
+            { "id": "essentials", "name": "Essentials", "description": "For up to 10 users" },
+            { "id": "professional", "name": "Professional", "description": "Complete CRM for any size team" },
+            { "id": "enterprise", "name": "Enterprise", "description": "Deeply customizable sales CRM" },
+            { "id": "unlimited", "name": "Unlimited", "description": "Unlimited CRM power and support" }
+          ],
+          "addOns": [
+            { "id": "einstein_ai", "name": "Einstein AI", "description": "AI-powered insights and automation" },
+            { "id": "cpq", "name": "CPQ & Billing", "description": "Configure, price, and quote" }
+          ]
+        }
+      ],
+      "total": 1,
+      "limit": 5,
+      "offset": 0
+    }
+  }
+}

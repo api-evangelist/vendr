@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/vendr/main/json-schema/vendr-catalog-product-schema.json",
+  "title": "Vendr Catalog Product",
+  "description": "Schema for a software product in the Vendr catalog, including tiers, add-ons, and pricing profiles.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique product identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Product name"
+    },
+    "company": {
+      "type": "string",
+      "description": "Vendor or company name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Product description"
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Product category tags (e.g., CRM, DevOps, Security)"
+    },
+    "tiers": {
+      "type": "array",
+      "description": "Available pricing tiers for this product",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "description": "Tier name (e.g., Starter, Professional, Enterprise)"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": ["id", "name"]
+      }
+    },
+    "addOns": {
+      "type": "array",
+      "description": "Available add-on products",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": ["id", "name"]
+      }
+    }
+  },
+  "required": ["id", "name", "company"]
+}

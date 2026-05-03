@@ -1,0 +1,50 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "vendr": "https://api.vendr.com/vocab/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "CatalogProduct": "vendr:CatalogProduct",
+    "PricingEstimate": "vendr:PricingEstimate",
+    "PurchaseScope": "vendr:PurchaseScope",
+    "NegotiationInsight": "vendr:NegotiationInsight",
+    "WebhookSubscription": "vendr:WebhookSubscription",
+
+    "productId": "schema:identifier",
+    "productName": "schema:name",
+    "company": "schema:brand",
+    "description": "schema:description",
+    "categories": "schema:category",
+    "tiers": "vendr:hasTier",
+    "addOns": "vendr:hasAddOn",
+
+    "priceRange": "schema:priceRange",
+    "p25": "vendr:priceP25",
+    "median": "vendr:priceMedian",
+    "p75": "vendr:priceP75",
+    "currency": "schema:priceCurrency",
+
+    "unitPrice": "schema:unitPrice",
+    "confidence": "vendr:confidenceScore",
+    "sampleSize": "vendr:contractSampleSize",
+
+    "negotiationInsights": "vendr:negotiationInsights",
+    "discountPotential": "vendr:discountPotential",
+    "leverageTiming": "vendr:leverageTiming",
+    "tips": "vendr:negotiationTip",
+
+    "tier": "vendr:productTier",
+    "licenses": "vendr:licenseCount",
+    "termMonths": "vendr:contractTermMonths",
+    "billingCadence": "vendr:billingCadence",
+
+    "webhookId": "schema:identifier",
+    "url": "schema:url",
+    "events": "vendr:subscribedEvents",
+    "createdAt": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "status": "schema:status"
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/vendr/main/json-schema/vendr-pricing-response-schema.json",
+  "title": "Vendr Pricing Response",
+  "description": "Schema for the Vendr OpenPrice API pricing estimate response, including price ranges, confidence scores, and negotiation insights derived from 200,000+ real software contracts.",
+  "type": "object",
+  "properties": {
+    "productId": {
+      "type": "string",
+      "description": "Unique product identifier from the Vendr catalog"
+    },
+    "productName": {
+      "type": "string",
+      "description": "Human-readable product name"
+    },
+    "priceRange": {
+      "type": "object",
+      "description": "Statistical price range derived from comparable contracts",
+      "properties": {
+        "p25": {
+          "type": "number",
+          "description": "25th percentile total contract value (low end)"
+        },
+        "median": {
+          "type": "number",
+          "description": "Median total contract value"
+        },
+        "p75": {
+          "type": "number",
+          "description": "75th percentile total contract value (high end)"
+        },
+        "currency": {
+          "type": "string",
+          "default": "USD",
+          "description": "ISO 4217 currency code"
+        }
+      },
+      "required": ["p25", "median", "p75"]
+    },
+    "unitPrice": {
+      "type": "object",
+      "description": "Per-unit pricing breakdown",
+      "properties": {
+        "amount": {
+          "type": "number",
+          "description": "Unit price amount"
+        },
+        "unit": {
+          "type": "string",
+          "description": "Pricing unit (e.g., per-seat/year)"
+        },
+        "currency": {
+          "type": "string",
+          "default": "USD"
+        }
+      }
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Confidence score (0-1) based on number of comparable contracts available"
+    },
+    "sampleSize": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of real contracts used to generate this estimate"
+    },
+    "negotiationInsights": {
+      "type": "object",
+      "description": "Actionable negotiation guidance based on historical deal data",
+      "properties": {
+        "discountPotential": {
+          "type": "number",
+          "description": "Typical achievable discount percentage"
+        },
+        "leverageTiming": {
+          "type": "string",
+          "description": "Optimal timing to negotiate for best pricing"
+        },
+        "tips": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Actionable negotiation recommendations"
+        }
+      }
+    }
+  },
+  "required": ["productId", "productName", "priceRange", "confidence", "sampleSize"]
+}
