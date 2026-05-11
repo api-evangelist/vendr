@@ -98,6 +98,31 @@ common:
   - type: Authentication
     url: https://developers.vendr.com/docs/introduction
 
+  - type: Integrations
+    url: https://www.vendr.com/integrations
+integrations:
+  - name: Google Workspace Identity Provider and SSO
+  - name: OneLogin Identity Provider and SSO
+  - name: Jumpcloud Identity Provider and SSO
+  - name: Jira Service Management Help Desk
+  - name: Jira Software Help Desk
+  - name: Microsoft OneDrive File Storage
+  - name: Box File Storage
+  - name: Dropbox File Storage
+  - name: Sage Intacct Accounting
+  - name: Quickbooks Accounting
+  - name: Netsuite Accounting
+  - name: Google Chrome Productivity
+  - name: SAML Identity Provider and SSO
+  - name: Webhooks Build Your Own
+  - name: Workday HR
+  - name: Gusto HR
+  - name: BambooHR HR
+  - name: Ironclad Contract Management
+  - name: Docusign Contract Management
+  - name: Okta Identity Provider and SSO
+  - name: Slack Productivity
+  - name: Google Drive File Storage
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
