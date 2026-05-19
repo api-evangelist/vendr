@@ -1,0 +1,82 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Vendr OpenPrice API — Scope
+  description: 'Vendr OpenPrice API — Scope. 1 operations. Lead operation: Submit Scope. Self-contained Naftiko capability
+    covering one Vendr business surface.'
+  tags:
+  - Vendr
+  - Scope
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    VENDR_API_KEY: VENDR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: vendr-scope
+    baseUri: https://api.vendr.com
+    description: Vendr OpenPrice API — Scope business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-scope
+      path: /v1/scope
+      operations:
+      - name: submitscope
+        method: POST
+        description: Submit Scope
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{env.VENDR_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: vendr-scope-rest
+    port: 8080
+    description: REST adapter for Vendr OpenPrice API — Scope. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v1/scope
+      name: v1-scope
+      description: REST surface for v1-scope.
+      operations:
+      - method: POST
+        name: submitscope
+        description: Submit Scope
+        call: vendr-scope.submitscope
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: vendr-scope-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Vendr OpenPrice API — Scope. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: submit-scope
+      description: Submit Scope
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: vendr-scope.submitscope
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
