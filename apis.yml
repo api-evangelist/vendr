@@ -20,7 +20,7 @@ tags:
 url: >-
   https://raw.githubusercontent.com/api-evangelist/vendr/refs/heads/main/apis.yml
 created: '2026-03-16'
-modified: '2026-05-03'
+modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
   - aid: vendr:vendr-openapi
@@ -100,6 +100,9 @@ common:
 
   - type: Integrations
     url: https://www.vendr.com/integrations
+  - name: MCP Server
+    url: https://github.com/vendrinc/vendr-mcp
+    type: MCPServer
 integrations:
   - name: Google Workspace Identity Provider and SSO
   - name: OneLogin Identity Provider and SSO
