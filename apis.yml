@@ -9,114 +9,116 @@ position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-- Pricing
-- Procurement
-- SaaS
-- Software Spend Management
-- Negotiation
+  - Pricing
+  - Procurement
+  - SaaS
+  - Software Spend Management
+  - Negotiation
 url: https://raw.githubusercontent.com/api-evangelist/vendr/refs/heads/main/apis.yml
 created: '2026-03-16'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-- aid: vendr:vendr-openapi
-  name: Vendr OpenPrice API
-  description: The Vendr OpenPrice API provides access to real SaaS pricing intelligence derived from 200,000+ verified software
-    contracts across 20,000+ products. It enables applications to retrieve structured catalog data, generate fair price estimates
-    with confidence scoring, define purchase scope requirements, and subscribe to webhook events. Authentication uses API
-    key via the X-API-Key header. Rate limits are 250 requests per minute and 150,000 requests per day.
-  humanURL: https://developers.vendr.com/docs/introduction
-  baseURL: https://api.vendr.com
-  tags:
-  - Pricing
-  - Procurement
-  - SaaS
-  - Catalog
-  - Webhooks
-  properties:
+  - aid: vendr:vendr-openapi
+    name: Vendr OpenPrice API
+    description: The Vendr OpenPrice API provides access to real SaaS pricing intelligence derived from 200,000+ verified software
+      contracts across 20,000+ products. It enables applications to retrieve structured catalog data, generate fair price estimates
+      with confidence scoring, define purchase scope requirements, and subscribe to webhook events. Authentication uses API
+      key via the X-API-Key header. Rate limits are 250 requests per minute and 150,000 requests per day.
+    humanURL: https://developers.vendr.com/docs/introduction
+    baseURL: https://api.vendr.com
+    tags:
+    - Pricing
+    - Procurement
+    - SaaS
+    - Catalog
+    - Webhooks
+    properties:
+    - type: Documentation
+      url: https://developers.vendr.com/docs/introduction
+    - type: OpenAPI
+      url: https://raw.githubusercontent.com/api-evangelist/vendr/refs/heads/main/openapi/vendr-openapi.yml
+    - type: JSONSchema
+      url: https://raw.githubusercontent.com/api-evangelist/vendr/refs/heads/main/json-schema/vendr-pricing-response-schema.json
+    - type: JSONSchema
+      url: https://raw.githubusercontent.com/api-evangelist/vendr/refs/heads/main/json-schema/vendr-catalog-product-schema.json
+    - type: SpectralRules
+      url: https://raw.githubusercontent.com/api-evangelist/vendr/refs/heads/main/rules/vendr-rules.yml
+    - type: Vocabulary
+      url: https://raw.githubusercontent.com/api-evangelist/vendr/refs/heads/main/vocabulary/vendr-vocabulary.yml
+    - type: NaftikoCapability
+      url: capabilities/vendr-catalog.yaml
+    - type: NaftikoCapability
+      url: capabilities/vendr-pricing.yaml
+    - type: NaftikoCapability
+      url: capabilities/vendr-scope.yaml
+    - type: NaftikoCapability
+      url: capabilities/vendr-webhooks.yaml
+    contact:
+    - FN: Vendr Developer Support
+      email: developers@vendr.com
+  - aid: vendr:vendr-mcp
+    name: Vendr MCP Server
+    description: The Vendr Model Context Protocol (MCP) server exposes Vendr pricing intelligence to AI agents via the MCP standard.
+      It provides tools for searching the product catalog, retrieving custom price estimates, and obtaining negotiation insights.
+      Requires a Vendr API key.
+    humanURL: https://github.com/vendrinc/vendr-mcp
+    baseURL: https://api.vendr.com
+    tags:
+    - MCP
+    - AI Agents
+    - Pricing
+    - Procurement
+    properties:
+    - type: Documentation
+      url: https://github.com/vendrinc/vendr-mcp
+    - type: GitHubRepository
+      url: https://github.com/vendrinc/vendr-mcp
+common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/vendr-co
+  - type: Website
+    url: https://www.vendr.com/
   - type: Documentation
     url: https://developers.vendr.com/docs/introduction
-  - type: OpenAPI
-    url: https://raw.githubusercontent.com/api-evangelist/vendr/refs/heads/main/openapi/vendr-openapi.yml
-  - type: JSONSchema
-    url: https://raw.githubusercontent.com/api-evangelist/vendr/refs/heads/main/json-schema/vendr-pricing-response-schema.json
-  - type: JSONSchema
-    url: https://raw.githubusercontent.com/api-evangelist/vendr/refs/heads/main/json-schema/vendr-catalog-product-schema.json
-  - type: SpectralRules
-    url: https://raw.githubusercontent.com/api-evangelist/vendr/refs/heads/main/rules/vendr-rules.yml
-  - type: Vocabulary
-    url: https://raw.githubusercontent.com/api-evangelist/vendr/refs/heads/main/vocabulary/vendr-vocabulary.yml
-  - type: NaftikoCapability
-    url: capabilities/vendr-catalog.yaml
-  - type: NaftikoCapability
-    url: capabilities/vendr-pricing.yaml
-  - type: NaftikoCapability
-    url: capabilities/vendr-scope.yaml
-  - type: NaftikoCapability
-    url: capabilities/vendr-webhooks.yaml
-  contact:
-  - FN: Vendr Developer Support
-    email: developers@vendr.com
-- aid: vendr:vendr-mcp
-  name: Vendr MCP Server
-  description: The Vendr Model Context Protocol (MCP) server exposes Vendr pricing intelligence to AI agents via the MCP standard.
-    It provides tools for searching the product catalog, retrieving custom price estimates, and obtaining negotiation insights.
-    Requires a Vendr API key.
-  humanURL: https://github.com/vendrinc/vendr-mcp
-  baseURL: https://api.vendr.com
-  tags:
-  - MCP
-  - AI Agents
-  - Pricing
-  - Procurement
-  properties:
-  - type: Documentation
+  - type: PricingPage
+    url: https://www.vendr.com/pricing-api
+  - type: GitHubOrganization
+    url: https://github.com/vendrinc
+  - type: Support
+    url: mailto:developers@vendr.com
+  - type: RateLimits
+    url: https://developers.vendr.com/docs/introduction
+  - type: Authentication
+    url: https://developers.vendr.com/docs/introduction
+  - type: Integrations
+    url: https://www.vendr.com/integrations
+  - name: MCP Server
     url: https://github.com/vendrinc/vendr-mcp
-  - type: GitHubRepository
-    url: https://github.com/vendrinc/vendr-mcp
-common:
-- type: Website
-  url: https://www.vendr.com/
-- type: Documentation
-  url: https://developers.vendr.com/docs/introduction
-- type: PricingPage
-  url: https://www.vendr.com/pricing-api
-- type: GitHubOrganization
-  url: https://github.com/vendrinc
-- type: Support
-  url: mailto:developers@vendr.com
-- type: RateLimits
-  url: https://developers.vendr.com/docs/introduction
-- type: Authentication
-  url: https://developers.vendr.com/docs/introduction
-- type: Integrations
-  url: https://www.vendr.com/integrations
-- name: MCP Server
-  url: https://github.com/vendrinc/vendr-mcp
-  type: MCPServer
+    type: MCPServer
 integrations:
-- name: Google Workspace Identity Provider and SSO
-- name: OneLogin Identity Provider and SSO
-- name: Jumpcloud Identity Provider and SSO
-- name: Jira Service Management Help Desk
-- name: Jira Software Help Desk
-- name: Microsoft OneDrive File Storage
-- name: Box File Storage
-- name: Dropbox File Storage
-- name: Sage Intacct Accounting
-- name: Quickbooks Accounting
-- name: Netsuite Accounting
-- name: Google Chrome Productivity
-- name: SAML Identity Provider and SSO
-- name: Webhooks Build Your Own
-- name: Workday HR
-- name: Gusto HR
-- name: BambooHR HR
-- name: Ironclad Contract Management
-- name: Docusign Contract Management
-- name: Okta Identity Provider and SSO
-- name: Slack Productivity
-- name: Google Drive File Storage
+  - name: Google Workspace Identity Provider and SSO
+  - name: OneLogin Identity Provider and SSO
+  - name: Jumpcloud Identity Provider and SSO
+  - name: Jira Service Management Help Desk
+  - name: Jira Software Help Desk
+  - name: Microsoft OneDrive File Storage
+  - name: Box File Storage
+  - name: Dropbox File Storage
+  - name: Sage Intacct Accounting
+  - name: Quickbooks Accounting
+  - name: Netsuite Accounting
+  - name: Google Chrome Productivity
+  - name: SAML Identity Provider and SSO
+  - name: Webhooks Build Your Own
+  - name: Workday HR
+  - name: Gusto HR
+  - name: BambooHR HR
+  - name: Ironclad Contract Management
+  - name: Docusign Contract Management
+  - name: Okta Identity Provider and SSO
+  - name: Slack Productivity
+  - name: Google Drive File Storage
 maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com
