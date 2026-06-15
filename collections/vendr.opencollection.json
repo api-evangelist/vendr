@@ -1,0 +1,156 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vendr OpenPrice API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Catalog",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Catalog",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.vendr.com/v1/catalog",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search query string for company or product name"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              }
+            ]
+          },
+          "docs": "Search for companies and products in the Vendr software catalog. Returns structured product information including pricing profiles and add-ons."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Scope",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit Scope",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.vendr.com/v1/scope",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit purchase requirements as text or structured data. The scope defines what software you are purchasing including product, tier, licenses, usage limits, and add-ons."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Pricing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Pricing Estimate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.vendr.com/v1/pricing",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get a fair price estimate and negotiation insights for a software purchase. Returns price ranges (p25, median, p75), confidence scores based on contract sample size, unit pricing, and actionable negotiation guidance."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.vendr.com/v1/webhooks"
+          },
+          "docs": "List all registered webhook subscriptions for the current account."
+        },
+        {
+          "info": {
+            "name": "Create Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.vendr.com/v1/webhooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Subscribe to Vendr data processing events by registering a webhook endpoint. Receive real-time notifications for workflow updates, document uploads, comments, and other events."
+        },
+        {
+          "info": {
+            "name": "Delete Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.vendr.com/v1/webhooks/:webhookId",
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the webhook subscription"
+              }
+            ]
+          },
+          "docs": "Remove a webhook subscription by ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,8 +1,8 @@
-# Vendr
+# Vendr (vendr)
 
-Vendr is a SaaS procurement intelligence platform that helps businesses manage software spending through data-driven pricing insights and negotiation guidance. The Vendr OpenPrice API provides access to real contract pricing data from 200,000+ verified software agreements across 20,000+ products.
+Vendr is a SaaS procurement intelligence platform that helps businesses manage software spending through data-driven pricing insights and negotiation guidance. The Vendr API (OpenPrice API) provides access to real contract pricing data from 200,000+ verified software agreements across 20,000+ products, enabling developers to embed fair pricing estimates, negotiation insights, product catalog data, and purchase scope management into their applications.
 
-**URL:** [https://raw.githubusercontent.com/api-evangelist/vendr/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/vendr/refs/heads/main/apis.yml)
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/vendr/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/vendr/refs/heads/main/apis.yml)
 
 ## Scope
 
@@ -12,88 +12,78 @@ Vendr is a SaaS procurement intelligence platform that helps businesses manage s
 
 ## Tags
 
-- Pricing, Procurement, SaaS, Software Spend Management, Negotiation
+- Pricing
+- Procurement
+- SaaS
+- Software Spend Management
+- Negotiation
 
 ## Timestamps
 
 - **Created:** 2026-03-16
-- **Modified:** 2026-05-03
+- **Modified:** 2026-05-19
 
 ## APIs
 
 ### Vendr OpenPrice API
 
-The Vendr OpenPrice API provides access to real SaaS pricing intelligence derived from 200,000+ verified software contracts across 20,000+ products. Enables catalog search, fair price estimation, scope definition, and webhook event subscriptions. Authentication uses API key via `X-API-Key` header. Rate limits: 250 req/min, 150,000 req/day.
+The Vendr OpenPrice API provides access to real SaaS pricing intelligence derived from 200,000+ verified software contracts across 20,000+ products. It enables applications to retrieve structured catalog data, generate fair price estimates with confidence scoring, define purchase scope requirements, and subscribe to webhook events. Authentication uses API key via the X-API-Key header. Rate limits are 250 requests per minute and 150,000 requests per day.
 
-**Human URL:** [https://developers.vendr.com/docs/introduction](https://developers.vendr.com/docs/introduction)
+- **Human URL:** [https://developers.vendr.com/docs/introduction](https://developers.vendr.com/docs/introduction)
+- **Base URL:** `https://api.vendr.com`
 
-**Base URL:** `https://api.vendr.com`
+#### Tags
 
-**Tags:** Pricing, Procurement, SaaS, Catalog, Webhooks
-
-**Endpoints:**
-- `GET /v1/catalog` — Search Catalog
-- `POST /v1/scope` — Submit Scope
-- `POST /v1/pricing` — Get Pricing Estimate
-- `GET /v1/webhooks` — List Webhooks
-- `POST /v1/webhooks` — Create Webhook
-- `DELETE /v1/webhooks/{webhookId}` — Delete Webhook
+- Pricing
+- Procurement
+- SaaS
+- Catalog
+- Webhooks
 
 #### Properties
 
 - [Documentation](https://developers.vendr.com/docs/introduction)
-- [OpenAPI](openapi/vendr-openapi.yml)
-- [JSON Schema - Pricing Response](json-schema/vendr-pricing-response-schema.json)
-- [JSON Schema - Catalog Product](json-schema/vendr-catalog-product-schema.json)
-- [Spectral Rules](rules/vendr-rules.yml)
-- [Vocabulary](vocabulary/vendr-vocabulary.yml)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/vendr/refs/heads/main/openapi/vendr-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/vendr/refs/heads/main/json-schema/vendr-pricing-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/vendr/refs/heads/main/json-schema/vendr-catalog-product-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [Spectral Rules](https://raw.githubusercontent.com/api-evangelist/vendr/refs/heads/main/rules/vendr-rules.yml)
+- [Vocabulary](https://raw.githubusercontent.com/api-evangelist/vendr/refs/heads/main/vocabulary/vendr-vocabulary.yml)
+- [Postman Collection](collections/vendr.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/vendr.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Vendr MCP Server
 
-The Vendr Model Context Protocol server exposes pricing intelligence to AI agents, providing tools for catalog search, price estimation, and negotiation insights.
+The Vendr Model Context Protocol (MCP) server exposes Vendr pricing intelligence to AI agents via the MCP standard. It provides tools for searching the product catalog, retrieving custom price estimates, and obtaining negotiation insights. Requires a Vendr API key.
 
-**Human URL:** [https://github.com/vendrinc/vendr-mcp](https://github.com/vendrinc/vendr-mcp)
+- **Human URL:** [https://github.com/vendrinc/vendr-mcp](https://github.com/vendrinc/vendr-mcp)
+- **Base URL:** `https://api.vendr.com`
 
-**Tags:** MCP, AI Agents, Pricing, Procurement
+#### Tags
+
+- MCP
+- AI Agents
+- Pricing
+- Procurement
 
 #### Properties
 
 - [Documentation](https://github.com/vendrinc/vendr-mcp)
-- [GitHubRepository](https://github.com/vendrinc/vendr-mcp)
-
-## Capabilities
-
-### Shared Definitions
-
-| File | Description |
-|---|---|
-| [capabilities/shared/vendr-openapi.yaml](capabilities/shared/vendr-openapi.yaml) | Vendr OpenPrice API — catalog, pricing, scope, webhooks (6 operations) |
-
-### Workflow Capabilities
-
-| Capability | APIs | Tools |
-|---|---|---|
-| [saas-procurement-intelligence](capabilities/saas-procurement-intelligence.yaml) | Vendr OpenPrice | 6 MCP tools |
-
-## Artifacts
-
-| Type | Files |
-|---|---|
-| OpenAPI | [openapi/vendr-openapi.yml](openapi/vendr-openapi.yml) |
-| JSON Schema | [json-schema/vendr-pricing-response-schema.json](json-schema/vendr-pricing-response-schema.json), [json-schema/vendr-catalog-product-schema.json](json-schema/vendr-catalog-product-schema.json) |
-| JSON Structure | [json-structure/vendr-pricing-response-structure.json](json-structure/vendr-pricing-response-structure.json) |
-| JSON-LD | [json-ld/vendr-context.jsonld](json-ld/vendr-context.jsonld) |
-| Examples | [examples/](examples/) (4 examples) |
-| Spectral Rules | [rules/vendr-rules.yml](rules/vendr-rules.yml) |
-| Vocabulary | [vocabulary/vendr-vocabulary.yml](vocabulary/vendr-vocabulary.yml) |
+- [GitHub Repository](https://github.com/vendrinc/vendr-mcp)
+- [Postman Collection](collections/vendr.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/vendr.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ## Common Properties
 
+- [LinkedIn](https://www.linkedin.com/company/vendr-co)
 - [Website](https://www.vendr.com/)
 - [Documentation](https://developers.vendr.com/docs/introduction)
-- [Pricing API](https://www.vendr.com/pricing-api)
+- [Pricing Page](https://www.vendr.com/pricing-api)
 - [GitHub Organization](https://github.com/vendrinc)
 - [Support](mailto:developers@vendr.com)
+- [Rate Limits](https://developers.vendr.com/docs/introduction)
+- [Authentication](https://developers.vendr.com/docs/introduction)
+- [Integrations](https://www.vendr.com/integrations)
+- [M C P Server](https://github.com/vendrinc/vendr-mcp)
 
 ## Maintainers
 
