@@ -14,7 +14,7 @@ info:
     url: https://developers.vendr.com/docs/introduction
   termsOfService: https://www.vendr.com/terms-of-service
   x-logo:
-    url: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    url: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 servers:
   - url: https://api.vendr.com
     description: Vendr Production API
