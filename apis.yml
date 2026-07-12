@@ -73,6 +73,12 @@ apis:
       - type: GitHubRepository
         url: https://github.com/vendrinc/vendr-mcp
 common:
+  - type: TrustCenter
+    url: security/vendr-trust-center.yml
+  - type: DomainSecurity
+    url: security/vendr-domain-security.yml
+  - type: Authentication
+    url: authentication/vendr-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/vendr-co
   - type: Website
@@ -94,6 +100,8 @@ common:
   - name: MCP Server
     url: https://github.com/vendrinc/vendr-mcp
     type: MCPServer
+  - type: Blog
+    url: https://vendr.com/blog
 integrations:
   - name: Google Workspace Identity Provider and SSO
   - name: OneLogin Identity Provider and SSO

@@ -1,0 +1,13 @@
+generated: '2026-07-11'
+method: searched
+probe: true
+source: https://www.vendr.com/
+url: https://www.vendr.com/
+certifications:
+- SOC 2
+- GDPR
+evidence:
+- source: https://www.vendr.com/
+  keywords:
+  - soc 2
+  - gdpr
