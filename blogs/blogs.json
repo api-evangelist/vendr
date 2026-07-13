@@ -1,0 +1,21 @@
+{
+  "repo": "vendr",
+  "feeds": [
+    {
+      "source": "https://vendr.com/blog",
+      "feed_url": "https://vendr.com/blog/rss.xml",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    },
+    {
+      "source": "https://github.com/vendrinc/vendr-mcp",
+      "feed_url": "https://github.com/vendrinc/vendr-mcp",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    }
+  ],
+  "fetched": "2026-07-11T11:50:51Z",
+  "post_count": 48
+}
