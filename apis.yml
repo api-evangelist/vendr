@@ -73,6 +73,8 @@ apis:
       - type: GitHubRepository
         url: https://github.com/vendrinc/vendr-mcp
 common:
+  - type: AgenticAccess
+    url: agentic-access/vendr-agentic-access.yml
   - type: TrustCenter
     url: security/vendr-trust-center.yml
   - type: DomainSecurity
