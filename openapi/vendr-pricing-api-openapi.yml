@@ -1,0 +1,198 @@
+openapi: 3.1.0
+info:
+  title: Vendr OpenPrice Catalog Pricing API
+  description: 'The Vendr OpenPrice API provides access to real SaaS pricing intelligence derived from 200,000+ verified software contracts across 20,000+ products. Embed fair price estimates, negotiation insights, product catalog data, and purchase scope management into your applications. Rate limits: 250 requests per minute, 150,000 requests per day.'
+  version: 1.0.0
+  contact:
+    name: Vendr Developer Support
+    email: developers@vendr.com
+    url: https://developers.vendr.com/docs/introduction
+  termsOfService: https://www.vendr.com/terms-of-service
+  x-logo:
+    url: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+servers:
+- url: https://api.vendr.com
+  description: Vendr Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Pricing
+  description: Fair price estimates and negotiation insights
+paths:
+  /v1/pricing:
+    post:
+      operationId: getPricingEstimate
+      summary: Get Pricing Estimate
+      description: Get a fair price estimate and negotiation insights for a software purchase. Returns price ranges (p25, median, p75), confidence scores based on contract sample size, unit pricing, and actionable negotiation guidance.
+      tags:
+      - Pricing
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PricingRequest'
+      responses:
+        '200':
+          description: Pricing estimate with negotiation insights
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PricingResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        code:
+          type: integer
+    PricingRequest:
+      type: object
+      properties:
+        productId:
+          type: string
+          description: Product ID from catalog
+        scope:
+          $ref: '#/components/schemas/ScopeResponse'
+          description: Structured purchase scope (use /v1/scope to generate)
+        text:
+          type: string
+          description: Natural language scope description (alternative to structured scope)
+    ScopeResponse:
+      type: object
+      properties:
+        productId:
+          type: string
+        productName:
+          type: string
+        company:
+          type: string
+        tier:
+          type: string
+        licenses:
+          type: integer
+          description: Number of seats/licenses
+        usageLimits:
+          type: array
+          items:
+            $ref: '#/components/schemas/UsageLimit'
+        addOns:
+          type: array
+          items:
+            type: string
+        termMonths:
+          type: integer
+          description: Contract term length in months
+        billingCadence:
+          type: string
+          enum:
+          - monthly
+          - annual
+          - multi-year
+    PriceRange:
+      type: object
+      properties:
+        p25:
+          type: number
+          description: 25th percentile price (low end)
+        median:
+          type: number
+          description: Median price
+        p75:
+          type: number
+          description: 75th percentile price (high end)
+        currency:
+          type: string
+          default: USD
+    NegotiationInsights:
+      type: object
+      properties:
+        discountPotential:
+          type: number
+          description: Typical achievable discount percentage
+        leverageTiming:
+          type: string
+          description: Best timing for negotiation leverage
+        tips:
+          type: array
+          items:
+            type: string
+          description: Actionable negotiation recommendations
+    UnitPrice:
+      type: object
+      properties:
+        amount:
+          type: number
+        unit:
+          type: string
+          description: Pricing unit (e.g., per-seat/year, per-month)
+        currency:
+          type: string
+          default: USD
+    PricingResponse:
+      type: object
+      properties:
+        productId:
+          type: string
+        productName:
+          type: string
+        priceRange:
+          $ref: '#/components/schemas/PriceRange'
+        unitPrice:
+          $ref: '#/components/schemas/UnitPrice'
+        confidence:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 1
+          description: Confidence score based on available contract sample size
+        sampleSize:
+          type: integer
+          description: Number of real contracts used for this estimate
+        negotiationInsights:
+          $ref: '#/components/schemas/NegotiationInsights'
+    UsageLimit:
+      type: object
+      properties:
+        metric:
+          type: string
+          description: Usage metric name (e.g., API calls, storage, events)
+        value:
+          type: number
+        unit:
+          type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RateLimitExceeded:
+      description: Rate limit exceeded (250/min or 150,000/day)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for authenticating requests. Contact developers@vendr.com to obtain a key.

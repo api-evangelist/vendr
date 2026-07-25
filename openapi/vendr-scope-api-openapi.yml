@@ -1,0 +1,136 @@
+openapi: 3.1.0
+info:
+  title: Vendr OpenPrice Catalog Scope API
+  description: 'The Vendr OpenPrice API provides access to real SaaS pricing intelligence derived from 200,000+ verified software contracts across 20,000+ products. Embed fair price estimates, negotiation insights, product catalog data, and purchase scope management into your applications. Rate limits: 250 requests per minute, 150,000 requests per day.'
+  version: 1.0.0
+  contact:
+    name: Vendr Developer Support
+    email: developers@vendr.com
+    url: https://developers.vendr.com/docs/introduction
+  termsOfService: https://www.vendr.com/terms-of-service
+  x-logo:
+    url: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+servers:
+- url: https://api.vendr.com
+  description: Vendr Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Scope
+  description: Define and submit purchase scope requirements
+paths:
+  /v1/scope:
+    post:
+      operationId: submitScope
+      summary: Submit Scope
+      description: Submit purchase requirements as text or structured data. The scope defines what software you are purchasing including product, tier, licenses, usage limits, and add-ons.
+      tags:
+      - Scope
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScopeRequest'
+      responses:
+        '200':
+          description: Parsed scope with structured purchase requirements
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScopeResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        code:
+          type: integer
+    ScopeResponse:
+      type: object
+      properties:
+        productId:
+          type: string
+        productName:
+          type: string
+        company:
+          type: string
+        tier:
+          type: string
+        licenses:
+          type: integer
+          description: Number of seats/licenses
+        usageLimits:
+          type: array
+          items:
+            $ref: '#/components/schemas/UsageLimit'
+        addOns:
+          type: array
+          items:
+            type: string
+        termMonths:
+          type: integer
+          description: Contract term length in months
+        billingCadence:
+          type: string
+          enum:
+          - monthly
+          - annual
+          - multi-year
+    ScopeRequest:
+      type: object
+      required:
+      - text
+      properties:
+        text:
+          type: string
+          description: 'Natural language description of the purchase scope. Example: "10 licenses of PagerDuty Enterprise Tier with 200,000 AIOps events"'
+          example: 10 licenses of Salesforce Sales Cloud Enterprise with 50,000 API calls per month
+        productId:
+          type: string
+          description: Optional product ID from catalog to constrain scope parsing
+    UsageLimit:
+      type: object
+      properties:
+        metric:
+          type: string
+          description: Usage metric name (e.g., API calls, storage, events)
+        value:
+          type: number
+        unit:
+          type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RateLimitExceeded:
+      description: Rate limit exceeded (250/min or 150,000/day)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for authenticating requests. Contact developers@vendr.com to obtain a key.

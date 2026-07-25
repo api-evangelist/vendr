@@ -1,0 +1,155 @@
+openapi: 3.1.0
+info:
+  title: Vendr OpenPrice Catalog API
+  description: 'The Vendr OpenPrice API provides access to real SaaS pricing intelligence derived from 200,000+ verified software contracts across 20,000+ products. Embed fair price estimates, negotiation insights, product catalog data, and purchase scope management into your applications. Rate limits: 250 requests per minute, 150,000 requests per day.'
+  version: 1.0.0
+  contact:
+    name: Vendr Developer Support
+    email: developers@vendr.com
+    url: https://developers.vendr.com/docs/introduction
+  termsOfService: https://www.vendr.com/terms-of-service
+  x-logo:
+    url: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+servers:
+- url: https://api.vendr.com
+  description: Vendr Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Catalog
+  description: Search and retrieve software product catalog data
+paths:
+  /v1/catalog:
+    get:
+      operationId: searchCatalog
+      summary: Search Catalog
+      description: Search for companies and products in the Vendr software catalog. Returns structured product information including pricing profiles and add-ons.
+      tags:
+      - Catalog
+      parameters:
+      - name: q
+        in: query
+        description: Search query string for company or product name
+        required: false
+        schema:
+          type: string
+          example: Salesforce
+      - name: limit
+        in: query
+        description: Maximum number of results to return
+        required: false
+        schema:
+          type: integer
+          default: 20
+          maximum: 100
+      - name: offset
+        in: query
+        description: Pagination offset
+        required: false
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: Catalog search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogSearchResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+components:
+  schemas:
+    ProductTier:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+          description: Tier name (e.g., Starter, Professional, Enterprise)
+        description:
+          type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        code:
+          type: integer
+    ProductAddOn:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+    CatalogSearchResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CatalogProduct'
+        total:
+          type: integer
+          description: Total number of matching results
+        limit:
+          type: integer
+        offset:
+          type: integer
+    CatalogProduct:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique product identifier
+        name:
+          type: string
+          description: Product name
+        company:
+          type: string
+          description: Vendor/company name
+        description:
+          type: string
+          description: Product description
+        categories:
+          type: array
+          items:
+            type: string
+          description: Product category tags
+        tiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductTier'
+          description: Available pricing tiers
+        addOns:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductAddOn'
+          description: Available add-on products
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RateLimitExceeded:
+      description: Rate limit exceeded (250/min or 150,000/day)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for authenticating requests. Contact developers@vendr.com to obtain a key.
