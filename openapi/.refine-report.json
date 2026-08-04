@@ -1,0 +1,20 @@
+{
+  "provider": "vendr",
+  "sources": [
+    "vendr-catalog-api-openapi.yml",
+    "vendr-pricing-api-openapi.yml",
+    "vendr-scope-api-openapi.yml",
+    "vendr-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "vendr-catalog-api-openapi.yml",
+    "vendr-pricing-api-openapi.yml",
+    "vendr-scope-api-openapi.yml",
+    "vendr-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
