@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vendr OpenPrice Catalog Scope API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Scope",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit Scope",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.vendr.com/v1/scope",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit purchase requirements as text or structured data. The scope defines what software you are purchasing including product, tier, licenses, usage limits, and add-ons."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
