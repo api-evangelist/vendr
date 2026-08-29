@@ -6,6 +6,18 @@ description: >-
   from 200,000+ verified software agreements across 20,000+ products, enabling developers to embed fair pricing
   estimates, negotiation insights, product catalog data, and purchase scope management into their applications.
 type: Index
+deliveryModel:
+  model: unknown
+  open_source: unknown
+  commercial: false
+  callable_host: true
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  - repository-unlicensed
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
@@ -156,6 +168,10 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/vendr/refs/heads/main/vocabulary/vendr-vocabulary.yml
 common:
+  - type: IssueTracker
+    url: https://github.com/vendrinc/vendr-mcp/issues
+  - type: Releases
+    url: https://github.com/vendrinc/vendr-mcp/releases
   - type: AgenticAccess
     url: agentic-access/vendr-agentic-access.yml
   - type: TrustCenter
