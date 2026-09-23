@@ -1,0 +1,1 @@
+{"resource":"https://mcp.vendr.com/mcp","authorization_servers":["https://clerk.vendr.com"],"scopes_supported":["user:org:read","offline_access"]}

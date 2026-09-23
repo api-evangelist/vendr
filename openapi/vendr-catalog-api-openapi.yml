@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Vendr OpenPrice Catalog API
   description: 'The Vendr OpenPrice API provides access to real SaaS pricing intelligence derived from 200,000+ verified software contracts across 20,000+ products. Embed fair price estimates, negotiation insights, product catalog data, and purchase scope management into your applications. Rate limits: 250 requests per minute, 150,000 requests per day.'
@@ -61,7 +61,29 @@ paths:
         '429':
           $ref: '#/components/responses/RateLimitExceeded'
 components:
+  responses:
+    RateLimitExceeded:
+      description: Rate limit exceeded (250/min or 150,000/day)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    ProductAddOn:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
     ProductTier:
       type: object
       properties:
@@ -80,29 +102,6 @@ components:
         message:
           type: string
         code:
-          type: integer
-    ProductAddOn:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-    CatalogSearchResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/CatalogProduct'
-        total:
-          type: integer
-          description: Total number of matching results
-        limit:
-          type: integer
-        offset:
           type: integer
     CatalogProduct:
       type: object
@@ -134,19 +133,20 @@ components:
           items:
             $ref: '#/components/schemas/ProductAddOn'
           description: Available add-on products
-  responses:
-    Unauthorized:
-      description: Missing or invalid API key
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    RateLimitExceeded:
-      description: Rate limit exceeded (250/min or 150,000/day)
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    CatalogSearchResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CatalogProduct'
+        total:
+          type: integer
+          description: Total number of matching results
+        limit:
+          type: integer
+        offset:
+          type: integer
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -1,10 +1,7 @@
 {
   "provider": "vendr",
   "sources": [
-    "vendr-catalog-api-openapi.yml",
-    "vendr-pricing-api-openapi.yml",
-    "vendr-scope-api-openapi.yml",
-    "vendr-webhooks-api-openapi.yml"
+    "_original/vendr-openapi.yml"
   ],
   "outputs": [
     "vendr-catalog-api-openapi.yml",
@@ -15,6 +12,15 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "vendr-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "vendr-catalog-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "vendr-pricing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "vendr-scope-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "vendr-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
