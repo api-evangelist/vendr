@@ -61,20 +61,30 @@ paths:
         '429':
           $ref: '#/components/responses/RateLimitExceeded'
 components:
-  responses:
-    RateLimitExceeded:
-      description: Rate limit exceeded (250/min or 150,000/day)
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid API key
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    CatalogSearchResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CatalogProduct'
+        total:
+          type: integer
+          description: Total number of matching results
+        limit:
+          type: integer
+        offset:
+          type: integer
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        code:
+          type: integer
     ProductAddOn:
       type: object
       properties:
@@ -94,15 +104,6 @@ components:
           description: Tier name (e.g., Starter, Professional, Enterprise)
         description:
           type: string
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-        code:
-          type: integer
     CatalogProduct:
       type: object
       properties:
@@ -133,20 +134,19 @@ components:
           items:
             $ref: '#/components/schemas/ProductAddOn'
           description: Available add-on products
-    CatalogSearchResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/CatalogProduct'
-        total:
-          type: integer
-          description: Total number of matching results
-        limit:
-          type: integer
-        offset:
-          type: integer
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RateLimitExceeded:
+      description: Rate limit exceeded (250/min or 150,000/day)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
