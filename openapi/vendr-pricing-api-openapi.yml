@@ -46,26 +46,26 @@ paths:
         '429':
           $ref: '#/components/responses/RateLimitExceeded'
 components:
+  responses:
+    RateLimitExceeded:
+      description: Rate limit exceeded (250/min or 150,000/day)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-        code:
-          type: integer
-    UsageLimit:
-      type: object
-      properties:
-        metric:
-          type: string
-          description: Usage metric name (e.g., API calls, storage, events)
-        value:
-          type: number
-        unit:
-          type: string
     PricingResponse:
       type: object
       properties:
@@ -88,6 +88,17 @@ components:
           description: Number of real contracts used for this estimate
         negotiationInsights:
           $ref: '#/components/schemas/NegotiationInsights'
+    UnitPrice:
+      type: object
+      properties:
+        amount:
+          type: number
+        unit:
+          type: string
+          description: Pricing unit (e.g., per-seat/year, per-month)
+        currency:
+          type: string
+          default: USD
     NegotiationInsights:
       type: object
       properties:
@@ -102,32 +113,6 @@ components:
           items:
             type: string
           description: Actionable negotiation recommendations
-    UnitPrice:
-      type: object
-      properties:
-        amount:
-          type: number
-        unit:
-          type: string
-          description: Pricing unit (e.g., per-seat/year, per-month)
-        currency:
-          type: string
-          default: USD
-    PriceRange:
-      type: object
-      properties:
-        p25:
-          type: number
-          description: 25th percentile price (low end)
-        median:
-          type: number
-          description: Median price
-        p75:
-          type: number
-          description: 75th percentile price (high end)
-        currency:
-          type: string
-          default: USD
     ScopeResponse:
       type: object
       properties:
@@ -159,6 +144,16 @@ components:
           - monthly
           - annual
           - multi-year
+    UsageLimit:
+      type: object
+      properties:
+        metric:
+          type: string
+          description: Usage metric name (e.g., API calls, storage, events)
+        value:
+          type: number
+        unit:
+          type: string
     PricingRequest:
       type: object
       properties:
@@ -171,25 +166,30 @@ components:
         text:
           type: string
           description: Natural language scope description (alternative to structured scope)
-  responses:
-    Unauthorized:
-      description: Missing or invalid API key
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    RateLimitExceeded:
-      description: Rate limit exceeded (250/min or 150,000/day)
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    PriceRange:
+      type: object
+      properties:
+        p25:
+          type: number
+          description: 25th percentile price (low end)
+        median:
+          type: number
+          description: Median price
+        p75:
+          type: number
+          description: 75th percentile price (high end)
+        currency:
+          type: string
+          default: USD
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        code:
+          type: integer
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

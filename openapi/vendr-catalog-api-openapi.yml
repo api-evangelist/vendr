@@ -61,7 +61,60 @@ paths:
         '429':
           $ref: '#/components/responses/RateLimitExceeded'
 components:
+  responses:
+    RateLimitExceeded:
+      description: Rate limit exceeded (250/min or 150,000/day)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    CatalogProduct:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique product identifier
+        name:
+          type: string
+          description: Product name
+        company:
+          type: string
+          description: Vendor/company name
+        description:
+          type: string
+          description: Product description
+        categories:
+          type: array
+          items:
+            type: string
+          description: Product category tags
+        tiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductTier'
+          description: Available pricing tiers
+        addOns:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductAddOn'
+          description: Available add-on products
+    ProductTier:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+          description: Tier name (e.g., Starter, Professional, Enterprise)
+        description:
+          type: string
     CatalogSearchResponse:
       type: object
       properties:
@@ -94,59 +147,6 @@ components:
           type: string
         description:
           type: string
-    ProductTier:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-          description: Tier name (e.g., Starter, Professional, Enterprise)
-        description:
-          type: string
-    CatalogProduct:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique product identifier
-        name:
-          type: string
-          description: Product name
-        company:
-          type: string
-          description: Vendor/company name
-        description:
-          type: string
-          description: Product description
-        categories:
-          type: array
-          items:
-            type: string
-          description: Product category tags
-        tiers:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProductTier'
-          description: Available pricing tiers
-        addOns:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProductAddOn'
-          description: Available add-on products
-  responses:
-    Unauthorized:
-      description: Missing or invalid API key
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    RateLimitExceeded:
-      description: Rate limit exceeded (250/min or 150,000/day)
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
