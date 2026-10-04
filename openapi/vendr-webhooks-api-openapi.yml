@@ -82,32 +82,27 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    RateLimitExceeded:
-      description: Rate limit exceeded (250/min or 150,000/day)
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid API key
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    WebhookResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique webhook subscription ID
+        url:
+          type: string
+        events:
+          type: array
+          items:
+            type: string
+        createdAt:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
     WebhookListResponse:
       type: object
       properties:
@@ -116,6 +111,15 @@ components:
           items:
             $ref: '#/components/schemas/WebhookResponse'
         total:
+          type: integer
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        code:
           type: integer
     WebhookRequest:
       type: object
@@ -141,35 +145,31 @@ components:
         secret:
           type: string
           description: Optional secret for verifying webhook signature
-    WebhookResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique webhook subscription ID
-        url:
-          type: string
-        events:
-          type: array
-          items:
-            type: string
-        createdAt:
-          type: string
-          format: date-time
-        status:
-          type: string
-          enum:
-          - active
-          - inactive
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-        code:
-          type: integer
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RateLimitExceeded:
+      description: Rate limit exceeded (250/min or 150,000/day)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

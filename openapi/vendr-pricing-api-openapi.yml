@@ -46,73 +46,7 @@ paths:
         '429':
           $ref: '#/components/responses/RateLimitExceeded'
 components:
-  responses:
-    RateLimitExceeded:
-      description: Rate limit exceeded (250/min or 150,000/day)
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid API key
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    PricingResponse:
-      type: object
-      properties:
-        productId:
-          type: string
-        productName:
-          type: string
-        priceRange:
-          $ref: '#/components/schemas/PriceRange'
-        unitPrice:
-          $ref: '#/components/schemas/UnitPrice'
-        confidence:
-          type: number
-          format: float
-          minimum: 0
-          maximum: 1
-          description: Confidence score based on available contract sample size
-        sampleSize:
-          type: integer
-          description: Number of real contracts used for this estimate
-        negotiationInsights:
-          $ref: '#/components/schemas/NegotiationInsights'
-    UnitPrice:
-      type: object
-      properties:
-        amount:
-          type: number
-        unit:
-          type: string
-          description: Pricing unit (e.g., per-seat/year, per-month)
-        currency:
-          type: string
-          default: USD
-    NegotiationInsights:
-      type: object
-      properties:
-        discountPotential:
-          type: number
-          description: Typical achievable discount percentage
-        leverageTiming:
-          type: string
-          description: Best timing for negotiation leverage
-        tips:
-          type: array
-          items:
-            type: string
-          description: Actionable negotiation recommendations
     ScopeResponse:
       type: object
       properties:
@@ -144,6 +78,20 @@ components:
           - monthly
           - annual
           - multi-year
+    NegotiationInsights:
+      type: object
+      properties:
+        discountPotential:
+          type: number
+          description: Typical achievable discount percentage
+        leverageTiming:
+          type: string
+          description: Best timing for negotiation leverage
+        tips:
+          type: array
+          items:
+            type: string
+          description: Actionable negotiation recommendations
     UsageLimit:
       type: object
       properties:
@@ -154,6 +102,28 @@ components:
           type: number
         unit:
           type: string
+    PricingResponse:
+      type: object
+      properties:
+        productId:
+          type: string
+        productName:
+          type: string
+        priceRange:
+          $ref: '#/components/schemas/PriceRange'
+        unitPrice:
+          $ref: '#/components/schemas/UnitPrice'
+        confidence:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 1
+          description: Confidence score based on available contract sample size
+        sampleSize:
+          type: integer
+          description: Number of real contracts used for this estimate
+        negotiationInsights:
+          $ref: '#/components/schemas/NegotiationInsights'
     PricingRequest:
       type: object
       properties:
@@ -190,6 +160,36 @@ components:
           type: string
         code:
           type: integer
+    UnitPrice:
+      type: object
+      properties:
+        amount:
+          type: number
+        unit:
+          type: string
+          description: Pricing unit (e.g., per-seat/year, per-month)
+        currency:
+          type: string
+          default: USD
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RateLimitExceeded:
+      description: Rate limit exceeded (250/min or 150,000/day)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

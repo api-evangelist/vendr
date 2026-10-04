@@ -46,38 +46,7 @@ paths:
         '429':
           $ref: '#/components/responses/RateLimitExceeded'
 components:
-  responses:
-    RateLimitExceeded:
-      description: Rate limit exceeded (250/min or 150,000/day)
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid API key
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    ScopeRequest:
-      type: object
-      required:
-      - text
-      properties:
-        text:
-          type: string
-          description: 'Natural language description of the purchase scope. Example: "10 licenses of PagerDuty Enterprise Tier with 200,000 AIOps events"'
-          example: 10 licenses of Salesforce Sales Cloud Enterprise with 50,000 API calls per month
-        productId:
-          type: string
-          description: Optional product ID from catalog to constrain scope parsing
     ScopeResponse:
       type: object
       properties:
@@ -109,6 +78,18 @@ components:
           - monthly
           - annual
           - multi-year
+    ScopeRequest:
+      type: object
+      required:
+      - text
+      properties:
+        text:
+          type: string
+          description: 'Natural language description of the purchase scope. Example: "10 licenses of PagerDuty Enterprise Tier with 200,000 AIOps events"'
+          example: 10 licenses of Salesforce Sales Cloud Enterprise with 50,000 API calls per month
+        productId:
+          type: string
+          description: Optional product ID from catalog to constrain scope parsing
     UsageLimit:
       type: object
       properties:
@@ -128,6 +109,25 @@ components:
           type: string
         code:
           type: integer
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RateLimitExceeded:
+      description: Rate limit exceeded (250/min or 150,000/day)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
