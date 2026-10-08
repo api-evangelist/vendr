@@ -172,6 +172,10 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/vendr/refs/heads/main/vocabulary/vendr-vocabulary.yml
 common:
+  - type: Plans
+    url: plans/vendr-plans-pricing.yml
+  - type: FinOps
+    url: finops/vendr-finops.yml
   - type: IssueTracker
     url: https://github.com/vendrinc/vendr-mcp/issues
   - type: Releases
