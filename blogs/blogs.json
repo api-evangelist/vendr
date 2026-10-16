@@ -2,11 +2,11 @@
   "repo": "vendr",
   "feeds": [
     {
-      "source": "https://github.com/vendrinc/vendr-mcp",
-      "feed_url": "https://github.com/vendrinc/vendr-mcp",
+      "source": "https://vendr.com/blog",
+      "feed_url": "https://vendr.com/blog/rss.xml",
       "title": "",
       "saved": 0,
-      "method": "none"
+      "method": "discovered"
     },
     {
       "source": "https://vendr.com/blog/rss.xml",
@@ -14,9 +14,16 @@
       "title": "",
       "saved": 0,
       "method": "feed"
+    },
+    {
+      "source": "https://github.com/vendrinc/vendr-mcp",
+      "feed_url": "https://github.com/vendrinc/vendr-mcp",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
-  "fetched": "2026-10-03T12:30:02Z",
+  "fetched": "2026-10-10T13:15:00Z",
   "post_count": 87,
   "feed_nature": "vendor-blog",
   "feed_nature_basis": "path_blog",
