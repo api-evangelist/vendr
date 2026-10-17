@@ -61,19 +61,6 @@ paths:
         '429':
           $ref: '#/components/responses/RateLimitExceeded'
 components:
-  responses:
-    RateLimitExceeded:
-      description: Rate limit exceeded (250/min or 150,000/day)
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid API key
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
     ProductAddOn:
       type: object
@@ -84,6 +71,15 @@ components:
           type: string
         description:
           type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        code:
+          type: integer
     CatalogProduct:
       type: object
       properties:
@@ -114,25 +110,6 @@ components:
           items:
             $ref: '#/components/schemas/ProductAddOn'
           description: Available add-on products
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-        code:
-          type: integer
-    ProductTier:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-          description: Tier name (e.g., Starter, Professional, Enterprise)
-        description:
-          type: string
     CatalogSearchResponse:
       type: object
       properties:
@@ -147,6 +124,29 @@ components:
           type: integer
         offset:
           type: integer
+    ProductTier:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+          description: Tier name (e.g., Starter, Professional, Enterprise)
+        description:
+          type: string
+  responses:
+    RateLimitExceeded:
+      description: Rate limit exceeded (250/min or 150,000/day)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -83,6 +83,39 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    WebhookRequest:
+      type: object
+      required:
+      - url
+      - events
+      properties:
+        url:
+          type: string
+          format: uri
+          description: HTTPS URL to receive webhook payloads
+        events:
+          type: array
+          items:
+            type: string
+            enum:
+            - workflow.updated
+            - document.uploaded
+            - comment.added
+            - deal.closed
+            - pricing.updated
+          description: Event types to subscribe to
+        secret:
+          type: string
+          description: Optional secret for verifying webhook signature
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        code:
+          type: integer
     WebhookResponse:
       type: object
       properties:
@@ -112,42 +145,15 @@ components:
             $ref: '#/components/schemas/WebhookResponse'
         total:
           type: integer
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-        code:
-          type: integer
-    WebhookRequest:
-      type: object
-      required:
-      - url
-      - events
-      properties:
-        url:
-          type: string
-          format: uri
-          description: HTTPS URL to receive webhook payloads
-        events:
-          type: array
-          items:
-            type: string
-            enum:
-            - workflow.updated
-            - document.uploaded
-            - comment.added
-            - deal.closed
-            - pricing.updated
-          description: Event types to subscribe to
-        secret:
-          type: string
-          description: Optional secret for verifying webhook signature
   responses:
     BadRequest:
       description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
@@ -160,12 +166,6 @@ components:
             $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Missing or invalid API key
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
       content:
         application/json:
           schema:

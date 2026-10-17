@@ -47,6 +47,27 @@ paths:
           $ref: '#/components/responses/RateLimitExceeded'
 components:
   schemas:
+    ScopeRequest:
+      type: object
+      required:
+      - text
+      properties:
+        text:
+          type: string
+          description: 'Natural language description of the purchase scope. Example: "10 licenses of PagerDuty Enterprise Tier with 200,000 AIOps events"'
+          example: 10 licenses of Salesforce Sales Cloud Enterprise with 50,000 API calls per month
+        productId:
+          type: string
+          description: Optional product ID from catalog to constrain scope parsing
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        code:
+          type: integer
     ScopeResponse:
       type: object
       properties:
@@ -78,18 +99,6 @@ components:
           - monthly
           - annual
           - multi-year
-    ScopeRequest:
-      type: object
-      required:
-      - text
-      properties:
-        text:
-          type: string
-          description: 'Natural language description of the purchase scope. Example: "10 licenses of PagerDuty Enterprise Tier with 200,000 AIOps events"'
-          example: 10 licenses of Salesforce Sales Cloud Enterprise with 50,000 API calls per month
-        productId:
-          type: string
-          description: Optional product ID from catalog to constrain scope parsing
     UsageLimit:
       type: object
       properties:
@@ -100,15 +109,6 @@ components:
           type: number
         unit:
           type: string
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-        code:
-          type: integer
   responses:
     BadRequest:
       description: Invalid request parameters
