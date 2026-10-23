@@ -172,6 +172,8 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/vendr/refs/heads/main/vocabulary/vendr-vocabulary.yml
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/vendr/overview
   - type: Plans
     url: plans/vendr-plans-pricing.yml
   - type: FinOps
