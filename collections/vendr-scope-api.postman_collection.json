@@ -1,280 +1,306 @@
 {
+  "info": {
+    "_postman_id": "2c510c34-f820-48d4-b7fe-4f3a8554cc99",
+    "name": "Vendr OpenPrice Scope API",
+    "description": "The Vendr OpenPrice API provides access to real SaaS pricing intelligence derived from 200,000+ verified software contracts across 20,000+ products. Embed fair price estimates, negotiation insights, product catalog data, and purchase scope management into your applications. Rate limits: 250 requests per minute, 150,000 requests per day.\n\nContact Support:\n Name: Vendr Developer Support\n Email: developers@vendr.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:12:22.000Z",
+    "updatedAt": "2026-10-21T20:12:22.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2c510c34-f820-48d4-b7fe-4f3a8554cc99"
+  },
   "item": [
     {
-      "id": "1cbd300e-cb39-4310-9278-b7f6114ecfab",
-      "name": "Scope",
-      "description": {
-        "content": "Define and submit purchase scope requirements",
-        "type": "text/plain"
-      },
+      "name": "v1",
       "item": [
         {
-          "id": "9cdcd450-3619-44c0-a7be-eb215679e91b",
-          "name": "Submit Scope",
-          "request": {
-            "name": "Submit Scope",
-            "description": {
-              "content": "Submit purchase requirements as text or structured data. The scope defines what software you are purchasing including product, tier, licenses, usage limits, and add-ons.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "scope"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"text\": \"<string>\",\n  \"productId\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "scope",
+          "item": [
             {
-              "id": "daac1c71-1c14-41a2-a963-ab46387e53f0",
-              "name": "Parsed scope with structured purchase requirements",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "scope"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+              "name": "Submit Scope",
+              "id": "e192c9f8-3cb2-4b66-9838-532c3cdb1bce",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-API-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"text\": \"10 licenses of Salesforce Sales Cloud Enterprise with 50,000 API calls per month\",\n  \"productId\": \"<string>\"\n}",
+                  "raw": "{\n  \"text\": \"<string>\",\n  \"productId\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"productId\": \"string\",\n  \"productName\": \"string\",\n  \"company\": \"string\",\n  \"tier\": \"string\",\n  \"licenses\": 4276,\n  \"usageLimits\": [\n    {\n      \"metric\": \"string\",\n      \"value\": 8371.053830359619,\n      \"unit\": \"string\"\n    },\n    {\n      \"metric\": \"string\",\n      \"value\": 9773.850252564791,\n      \"unit\": \"string\"\n    }\n  ],\n  \"addOns\": [\n    \"string\",\n    \"string\"\n  ],\n  \"termMonths\": 4955,\n  \"billingCadence\": \"monthly\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "fc7ded25-eb94-4889-9e54-19cd1e87d655",
-              "name": "Invalid request parameters",
-              "originalRequest": {
+                },
                 "url": {
-                  "path": [
-                    "v1",
-                    "scope"
-                  ],
+                  "raw": "{{baseUrl}}/v1/scope",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-API-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"text\": \"10 licenses of Salesforce Sales Cloud Enterprise with 50,000 API calls per month\",\n  \"productId\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"code\": 6844\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "4758acaa-1910-4d4b-8829-0367007c3039",
-              "name": "Missing or invalid API key",
-              "originalRequest": {
-                "url": {
                   "path": [
                     "v1",
                     "scope"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-API-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"text\": \"10 licenses of Salesforce Sales Cloud Enterprise with 50,000 API calls per month\",\n  \"productId\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
+                "description": "Submit purchase requirements as text or structured data. The scope defines what software you are purchasing including product, tier, licenses, usage limits, and add-ons."
               },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "e760bdba-ff36-45e9-9cdc-a5c84b679ffe",
+                  "name": "Parsed scope with structured purchase requirements",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"text\": \"<string>\",\n  \"productId\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/scope",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "scope"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"productId\": \"<string>\",\n  \"productName\": \"<string>\",\n  \"company\": \"<string>\",\n  \"tier\": \"<string>\",\n  \"licenses\": \"<integer>\",\n  \"usageLimits\": [\n    {\n      \"metric\": \"<string>\",\n      \"value\": \"<number>\",\n      \"unit\": \"<string>\"\n    },\n    {\n      \"metric\": \"<string>\",\n      \"value\": \"<number>\",\n      \"unit\": \"<string>\"\n    }\n  ],\n  \"addOns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"termMonths\": \"<integer>\",\n  \"billingCadence\": \"monthly\"\n}",
+                  "createdAt": "2026-10-21T20:12:22.000Z",
+                  "updatedAt": "2026-10-21T20:12:22.000Z",
+                  "uid": "35240-e760bdba-ff36-45e9-9cdc-a5c84b679ffe"
+                },
+                {
+                  "id": "4df7d82d-d930-459f-b68a-b3d5f2f4b176",
+                  "name": "Invalid request parameters",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"text\": \"<string>\",\n  \"productId\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/scope",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "scope"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-10-21T20:12:22.000Z",
+                  "updatedAt": "2026-10-21T20:12:22.000Z",
+                  "uid": "35240-4df7d82d-d930-459f-b68a-b3d5f2f4b176"
+                },
+                {
+                  "id": "f8243318-505c-4cd3-bc5f-c736560ab1ec",
+                  "name": "Missing or invalid API key",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"text\": \"<string>\",\n  \"productId\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/scope",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "scope"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-10-21T20:12:22.000Z",
+                  "updatedAt": "2026-10-21T20:12:22.000Z",
+                  "uid": "35240-f8243318-505c-4cd3-bc5f-c736560ab1ec"
+                },
+                {
+                  "id": "46bb8814-56fb-4417-ab64-b142d547f2c0",
+                  "name": "Rate limit exceeded (250/min or 150,000/day)",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"text\": \"<string>\",\n  \"productId\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/scope",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "scope"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-10-21T20:12:22.000Z",
+                  "updatedAt": "2026-10-21T20:12:22.000Z",
+                  "uid": "35240-46bb8814-56fb-4417-ab64-b142d547f2c0"
                 }
               ],
-              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"code\": 6844\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "01e3ca5b-fb80-4d8f-862e-30a7d9c89ae3",
-              "name": "Rate limit exceeded (250/min or 150,000/day)",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "scope"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-API-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"text\": \"10 licenses of Salesforce Sales Cloud Enterprise with 50,000 API calls per month\",\n  \"productId\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Too Many Requests",
-              "code": 429,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"code\": 6844\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-21T20:12:22.000Z",
+              "updatedAt": "2026-10-21T20:12:22.000Z",
+              "uid": "35240-e192c9f8-3cb2-4b66-9838-532c3cdb1bce"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "1ffed16c-9615-4c61-8a4f-ff3113c1a166",
+          "createdAt": "2026-10-21T20:12:22.000Z",
+          "updatedAt": "2026-10-21T20:12:22.000Z",
+          "uid": "35240-1ffed16c-9615-4c61-8a4f-ff3113c1a166"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.vendr.com",
-      "key": "baseUrl"
+      "id": "950285c1-2bc0-4c1f-b83e-995728b76173",
+      "createdAt": "2026-10-21T20:12:22.000Z",
+      "updatedAt": "2026-10-21T20:12:22.000Z",
+      "uid": "35240-950285c1-2bc0-4c1f-b83e-995728b76173"
     }
   ],
   "auth": {
@@ -282,25 +308,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-API-Key"
+        "value": "X-API-Key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "b62bd42b-be45-4472-afcd-e1bee4b233f5",
-    "name": "Vendr OpenPrice Catalog Scope API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Vendr OpenPrice API provides access to real SaaS pricing intelligence derived from 200,000+ verified software contracts across 20,000+ products. Embed fair price estimates, negotiation insights, product catalog data, and purchase scope management into your applications. Rate limits: 250 requests per minute, 150,000 requests per day.\n\nContact Support:\n Name: Vendr Developer Support\n Email: developers@vendr.com",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.vendr.com"
     }
-  }
+  ]
 }

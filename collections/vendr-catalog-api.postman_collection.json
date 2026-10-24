@@ -1,249 +1,261 @@
 {
+  "info": {
+    "_postman_id": "10c99b96-a6bd-4fc9-9029-ca9202262989",
+    "name": "Vendr OpenPrice Catalog API",
+    "description": "The Vendr OpenPrice API provides access to real SaaS pricing intelligence derived from 200,000+ verified software contracts across 20,000+ products. Embed fair price estimates, negotiation insights, product catalog data, and purchase scope management into your applications. Rate limits: 250 requests per minute, 150,000 requests per day.\n\nContact Support:\n Name: Vendr Developer Support\n Email: developers@vendr.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:12:09.000Z",
+    "updatedAt": "2026-10-21T20:12:09.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-10c99b96-a6bd-4fc9-9029-ca9202262989"
+  },
   "item": [
     {
-      "id": "5808eaf6-3320-413c-8bb3-d8d3e4f5bcad",
-      "name": "Catalog",
-      "description": {
-        "content": "Search and retrieve software product catalog data",
-        "type": "text/plain"
-      },
+      "name": "v1",
       "item": [
         {
-          "id": "4e6d6592-9e62-4543-a73e-cbd21da82110",
-          "name": "Search Catalog",
-          "request": {
-            "name": "Search Catalog",
-            "description": {
-              "content": "Search for companies and products in the Vendr software catalog. Returns structured product information including pricing profiles and add-ons.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "catalog"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "q",
-                  "value": "<string>",
-                  "description": "Search query string for company or product name"
-                },
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "20",
-                  "description": "Maximum number of results to return"
-                },
-                {
-                  "disabled": false,
-                  "key": "offset",
-                  "value": "0",
-                  "description": "Pagination offset"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "catalog",
+          "item": [
             {
-              "id": "d7b7b217-54c7-4efd-a318-a35687a59363",
-              "name": "Catalog search results",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "catalog"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "q",
-                      "value": "Salesforce"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "20"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "0"
-                    }
-                  ],
-                  "variable": []
-                },
+              "name": "Search Catalog",
+              "id": "a0537ac6-e39a-4bd6-82a8-927c3a35c43b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-API-Key",
-                    "value": "<API Key>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"company\": \"string\",\n      \"description\": \"string\",\n      \"categories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"tiers\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\"\n        }\n      ],\n      \"addOns\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"company\": \"string\",\n      \"description\": \"string\",\n      \"categories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"tiers\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\"\n        }\n      ],\n      \"addOns\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"total\": 1440,\n  \"limit\": 8419,\n  \"offset\": 442\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "04e9e7a9-3e13-466d-abd9-ee87d78b2f33",
-              "name": "Missing or invalid API key",
-              "originalRequest": {
                 "url": {
+                  "raw": "{{baseUrl}}/v1/catalog?q=<string>&limit=20&offset=0",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "v1",
                     "catalog"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "Search query string for company or product name",
                       "key": "q",
-                      "value": "Salesforce"
+                      "value": "<string>"
                     },
                     {
+                      "description": "Maximum number of results to return",
                       "key": "limit",
                       "value": "20"
                     },
                     {
+                      "description": "Pagination offset",
                       "key": "offset",
                       "value": "0"
                     }
-                  ],
-                  "variable": []
+                  ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-API-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Search for companies and products in the Vendr software catalog. Returns structured product information including pricing profiles and add-ons."
               },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"code\": 8922\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "461e04fa-9dc6-411d-b9e5-26758a9280da",
-              "name": "Rate limit exceeded (250/min or 150,000/day)",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "catalog"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "ce566e9d-0d00-416e-8739-b1692598a6cf",
+                  "name": "Catalog search results",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/catalog?q=<string>&limit=20&offset=0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "catalog"
+                      ],
+                      "query": [
+                        {
+                          "description": "Search query string for company or product name",
+                          "key": "q",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of results to return",
+                          "key": "limit",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Pagination offset",
+                          "key": "offset",
+                          "value": "0"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "q",
-                      "value": "Salesforce"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "20"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "0"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"company\": \"<string>\",\n      \"description\": \"<string>\",\n      \"categories\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"tiers\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"addOns\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"company\": \"<string>\",\n      \"description\": \"<string>\",\n      \"categories\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"tiers\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"addOns\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"total\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"offset\": \"<integer>\"\n}",
+                  "createdAt": "2026-10-21T20:12:10.000Z",
+                  "updatedAt": "2026-10-21T20:12:10.000Z",
+                  "uid": "35240-ce566e9d-0d00-416e-8739-b1692598a6cf"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-API-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Too Many Requests",
-              "code": 429,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "5b4fa6c5-ec2b-487e-85d0-cfb60c2b8356",
+                  "name": "Missing or invalid API key",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/catalog?q=<string>&limit=20&offset=0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "catalog"
+                      ],
+                      "query": [
+                        {
+                          "description": "Search query string for company or product name",
+                          "key": "q",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of results to return",
+                          "key": "limit",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Pagination offset",
+                          "key": "offset",
+                          "value": "0"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-10-21T20:12:10.000Z",
+                  "updatedAt": "2026-10-21T20:12:10.000Z",
+                  "uid": "35240-5b4fa6c5-ec2b-487e-85d0-cfb60c2b8356"
+                },
+                {
+                  "id": "4b436933-5d8f-43aa-a5a6-f83704cf8022",
+                  "name": "Rate limit exceeded (250/min or 150,000/day)",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/catalog?q=<string>&limit=20&offset=0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "catalog"
+                      ],
+                      "query": [
+                        {
+                          "description": "Search query string for company or product name",
+                          "key": "q",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of results to return",
+                          "key": "limit",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Pagination offset",
+                          "key": "offset",
+                          "value": "0"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-10-21T20:12:10.000Z",
+                  "updatedAt": "2026-10-21T20:12:10.000Z",
+                  "uid": "35240-4b436933-5d8f-43aa-a5a6-f83704cf8022"
                 }
               ],
-              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"code\": 8922\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-21T20:12:10.000Z",
+              "updatedAt": "2026-10-21T20:12:10.000Z",
+              "uid": "35240-a0537ac6-e39a-4bd6-82a8-927c3a35c43b"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "57eb035e-ecaf-46f5-82d1-69c5978841ad",
+          "createdAt": "2026-10-21T20:12:10.000Z",
+          "updatedAt": "2026-10-21T20:12:10.000Z",
+          "uid": "35240-57eb035e-ecaf-46f5-82d1-69c5978841ad"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.vendr.com",
-      "key": "baseUrl"
+      "id": "3da77ca1-4ad5-44ee-9cf1-9cef165a40d2",
+      "createdAt": "2026-10-21T20:12:10.000Z",
+      "updatedAt": "2026-10-21T20:12:10.000Z",
+      "uid": "35240-3da77ca1-4ad5-44ee-9cf1-9cef165a40d2"
     }
   ],
   "auth": {
@@ -251,25 +263,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-API-Key"
+        "value": "X-API-Key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "f4ea2d9c-3fdd-408c-a5d1-8d29048df98d",
-    "name": "Vendr OpenPrice Catalog API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Vendr OpenPrice API provides access to real SaaS pricing intelligence derived from 200,000+ verified software contracts across 20,000+ products. Embed fair price estimates, negotiation insights, product catalog data, and purchase scope management into your applications. Rate limits: 250 requests per minute, 150,000 requests per day.\n\nContact Support:\n Name: Vendr Developer Support\n Email: developers@vendr.com",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.vendr.com"
     }
-  }
+  ]
 }

@@ -1,280 +1,306 @@
 {
+  "info": {
+    "_postman_id": "96402489-2aba-445b-982d-2e3823b951d0",
+    "name": "Vendr OpenPrice Pricing API",
+    "description": "The Vendr OpenPrice API provides access to real SaaS pricing intelligence derived from 200,000+ verified software contracts across 20,000+ products. Embed fair price estimates, negotiation insights, product catalog data, and purchase scope management into your applications. Rate limits: 250 requests per minute, 150,000 requests per day.\n\nContact Support:\n Name: Vendr Developer Support\n Email: developers@vendr.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:12:15.000Z",
+    "updatedAt": "2026-10-21T20:12:15.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-96402489-2aba-445b-982d-2e3823b951d0"
+  },
   "item": [
     {
-      "id": "e837d22b-ed12-46ee-9356-03e5978688f3",
-      "name": "Pricing",
-      "description": {
-        "content": "Fair price estimates and negotiation insights",
-        "type": "text/plain"
-      },
+      "name": "v1",
       "item": [
         {
-          "id": "991f7b0b-c4d2-4463-8b27-a527c6afda50",
-          "name": "Get Pricing Estimate",
-          "request": {
-            "name": "Get Pricing Estimate",
-            "description": {
-              "content": "Get a fair price estimate and negotiation insights for a software purchase. Returns price ranges (p25, median, p75), confidence scores based on contract sample size, unit pricing, and actionable negotiation guidance.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "pricing"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"productId\": \"<string>\",\n  \"scope\": {\n    \"productId\": \"<string>\",\n    \"productName\": \"<string>\",\n    \"company\": \"<string>\",\n    \"tier\": \"<string>\",\n    \"licenses\": \"<integer>\",\n    \"usageLimits\": [\n      {\n        \"metric\": \"<string>\",\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\"\n      },\n      {\n        \"metric\": \"<string>\",\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\"\n      }\n    ],\n    \"addOns\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"termMonths\": \"<integer>\",\n    \"billingCadence\": \"<string>\"\n  },\n  \"text\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "pricing",
+          "item": [
             {
-              "id": "46064b28-d515-46d6-bbaf-135444df472a",
-              "name": "Pricing estimate with negotiation insights",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "pricing"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+              "name": "Get Pricing Estimate",
+              "id": "8ebe0422-2c62-4f8e-a5d3-e7e7f26dcb8e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-API-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"productId\": \"<string>\",\n  \"scope\": {\n    \"productId\": \"string\",\n    \"productName\": \"string\",\n    \"company\": \"string\",\n    \"tier\": \"string\",\n    \"licenses\": 8064,\n    \"usageLimits\": [\n      {\n        \"metric\": \"string\",\n        \"value\": 9700.451376259265,\n        \"unit\": \"string\"\n      },\n      {\n        \"metric\": \"string\",\n        \"value\": 3325.641007243506,\n        \"unit\": \"string\"\n      }\n    ],\n    \"addOns\": [\n      \"string\",\n      \"string\"\n    ],\n    \"termMonths\": 145,\n    \"billingCadence\": \"monthly\"\n  },\n  \"text\": \"<string>\"\n}",
+                  "raw": "{\n  \"productId\": \"<string>\",\n  \"scope\": {\n    \"productId\": \"<string>\",\n    \"productName\": \"<string>\",\n    \"company\": \"<string>\",\n    \"tier\": \"<string>\",\n    \"licenses\": \"<integer>\",\n    \"usageLimits\": [\n      {\n        \"metric\": \"<string>\",\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\"\n      },\n      {\n        \"metric\": \"<string>\",\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\"\n      }\n    ],\n    \"addOns\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"termMonths\": \"<integer>\",\n    \"billingCadence\": \"annual\"\n  },\n  \"text\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"productId\": \"string\",\n  \"productName\": \"string\",\n  \"priceRange\": {\n    \"p25\": 1159.576251502964,\n    \"median\": 8138.206687146579,\n    \"p75\": 8160.776092441531,\n    \"currency\": \"USD\"\n  },\n  \"unitPrice\": {\n    \"amount\": 6153.720255949236,\n    \"unit\": \"string\",\n    \"currency\": \"USD\"\n  },\n  \"confidence\": 0.6736646607674368,\n  \"sampleSize\": 9986,\n  \"negotiationInsights\": {\n    \"discountPotential\": 6206.248316021554,\n    \"leverageTiming\": \"string\",\n    \"tips\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "dba16bc6-acce-494d-b017-8d499dd39b03",
-              "name": "Invalid request parameters",
-              "originalRequest": {
+                },
                 "url": {
-                  "path": [
-                    "v1",
-                    "pricing"
-                  ],
+                  "raw": "{{baseUrl}}/v1/pricing",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-API-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"productId\": \"<string>\",\n  \"scope\": {\n    \"productId\": \"string\",\n    \"productName\": \"string\",\n    \"company\": \"string\",\n    \"tier\": \"string\",\n    \"licenses\": 8064,\n    \"usageLimits\": [\n      {\n        \"metric\": \"string\",\n        \"value\": 9700.451376259265,\n        \"unit\": \"string\"\n      },\n      {\n        \"metric\": \"string\",\n        \"value\": 3325.641007243506,\n        \"unit\": \"string\"\n      }\n    ],\n    \"addOns\": [\n      \"string\",\n      \"string\"\n    ],\n    \"termMonths\": 145,\n    \"billingCadence\": \"monthly\"\n  },\n  \"text\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"code\": 3817\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "11f6b40a-e312-407e-ba6d-c18fe0ff2c42",
-              "name": "Missing or invalid API key",
-              "originalRequest": {
-                "url": {
                   "path": [
                     "v1",
                     "pricing"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-API-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"productId\": \"<string>\",\n  \"scope\": {\n    \"productId\": \"string\",\n    \"productName\": \"string\",\n    \"company\": \"string\",\n    \"tier\": \"string\",\n    \"licenses\": 8064,\n    \"usageLimits\": [\n      {\n        \"metric\": \"string\",\n        \"value\": 9700.451376259265,\n        \"unit\": \"string\"\n      },\n      {\n        \"metric\": \"string\",\n        \"value\": 3325.641007243506,\n        \"unit\": \"string\"\n      }\n    ],\n    \"addOns\": [\n      \"string\",\n      \"string\"\n    ],\n    \"termMonths\": 145,\n    \"billingCadence\": \"monthly\"\n  },\n  \"text\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
+                "description": "Get a fair price estimate and negotiation insights for a software purchase. Returns price ranges (p25, median, p75), confidence scores based on contract sample size, unit pricing, and actionable negotiation guidance."
               },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "9cfd3ff7-bd73-49ae-b445-d0b4b3a524f3",
+                  "name": "Pricing estimate with negotiation insights",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"productId\": \"<string>\",\n  \"scope\": {\n    \"productId\": \"<string>\",\n    \"productName\": \"<string>\",\n    \"company\": \"<string>\",\n    \"tier\": \"<string>\",\n    \"licenses\": \"<integer>\",\n    \"usageLimits\": [\n      {\n        \"metric\": \"<string>\",\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\"\n      },\n      {\n        \"metric\": \"<string>\",\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\"\n      }\n    ],\n    \"addOns\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"termMonths\": \"<integer>\",\n    \"billingCadence\": \"annual\"\n  },\n  \"text\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/pricing",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "pricing"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"productId\": \"<string>\",\n  \"productName\": \"<string>\",\n  \"priceRange\": {\n    \"p25\": \"<number>\",\n    \"median\": \"<number>\",\n    \"p75\": \"<number>\",\n    \"currency\": \"USD\"\n  },\n  \"unitPrice\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\",\n    \"currency\": \"USD\"\n  },\n  \"confidence\": \"<float>\",\n  \"sampleSize\": \"<integer>\",\n  \"negotiationInsights\": {\n    \"discountPotential\": \"<number>\",\n    \"leverageTiming\": \"<string>\",\n    \"tips\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "createdAt": "2026-10-21T20:12:16.000Z",
+                  "updatedAt": "2026-10-21T20:12:16.000Z",
+                  "uid": "35240-9cfd3ff7-bd73-49ae-b445-d0b4b3a524f3"
+                },
+                {
+                  "id": "9a7d8b12-de03-4c30-9582-0e7d7f1fe435",
+                  "name": "Invalid request parameters",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"productId\": \"<string>\",\n  \"scope\": {\n    \"productId\": \"<string>\",\n    \"productName\": \"<string>\",\n    \"company\": \"<string>\",\n    \"tier\": \"<string>\",\n    \"licenses\": \"<integer>\",\n    \"usageLimits\": [\n      {\n        \"metric\": \"<string>\",\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\"\n      },\n      {\n        \"metric\": \"<string>\",\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\"\n      }\n    ],\n    \"addOns\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"termMonths\": \"<integer>\",\n    \"billingCadence\": \"annual\"\n  },\n  \"text\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/pricing",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "pricing"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-10-21T20:12:16.000Z",
+                  "updatedAt": "2026-10-21T20:12:16.000Z",
+                  "uid": "35240-9a7d8b12-de03-4c30-9582-0e7d7f1fe435"
+                },
+                {
+                  "id": "26f4fdc2-2910-424f-bdd6-53fa25394bb6",
+                  "name": "Missing or invalid API key",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"productId\": \"<string>\",\n  \"scope\": {\n    \"productId\": \"<string>\",\n    \"productName\": \"<string>\",\n    \"company\": \"<string>\",\n    \"tier\": \"<string>\",\n    \"licenses\": \"<integer>\",\n    \"usageLimits\": [\n      {\n        \"metric\": \"<string>\",\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\"\n      },\n      {\n        \"metric\": \"<string>\",\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\"\n      }\n    ],\n    \"addOns\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"termMonths\": \"<integer>\",\n    \"billingCadence\": \"annual\"\n  },\n  \"text\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/pricing",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "pricing"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-10-21T20:12:16.000Z",
+                  "updatedAt": "2026-10-21T20:12:16.000Z",
+                  "uid": "35240-26f4fdc2-2910-424f-bdd6-53fa25394bb6"
+                },
+                {
+                  "id": "dfd68d37-f9e8-4690-b9f6-593dce7280a4",
+                  "name": "Rate limit exceeded (250/min or 150,000/day)",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"productId\": \"<string>\",\n  \"scope\": {\n    \"productId\": \"<string>\",\n    \"productName\": \"<string>\",\n    \"company\": \"<string>\",\n    \"tier\": \"<string>\",\n    \"licenses\": \"<integer>\",\n    \"usageLimits\": [\n      {\n        \"metric\": \"<string>\",\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\"\n      },\n      {\n        \"metric\": \"<string>\",\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\"\n      }\n    ],\n    \"addOns\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"termMonths\": \"<integer>\",\n    \"billingCadence\": \"annual\"\n  },\n  \"text\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/pricing",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "pricing"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-10-21T20:12:16.000Z",
+                  "updatedAt": "2026-10-21T20:12:16.000Z",
+                  "uid": "35240-dfd68d37-f9e8-4690-b9f6-593dce7280a4"
                 }
               ],
-              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"code\": 3817\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "8797159e-9140-4ec8-acd0-53fa4ee5ef7e",
-              "name": "Rate limit exceeded (250/min or 150,000/day)",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "pricing"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-API-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"productId\": \"<string>\",\n  \"scope\": {\n    \"productId\": \"string\",\n    \"productName\": \"string\",\n    \"company\": \"string\",\n    \"tier\": \"string\",\n    \"licenses\": 8064,\n    \"usageLimits\": [\n      {\n        \"metric\": \"string\",\n        \"value\": 9700.451376259265,\n        \"unit\": \"string\"\n      },\n      {\n        \"metric\": \"string\",\n        \"value\": 3325.641007243506,\n        \"unit\": \"string\"\n      }\n    ],\n    \"addOns\": [\n      \"string\",\n      \"string\"\n    ],\n    \"termMonths\": 145,\n    \"billingCadence\": \"monthly\"\n  },\n  \"text\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Too Many Requests",
-              "code": 429,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"code\": 3817\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-21T20:12:16.000Z",
+              "updatedAt": "2026-10-21T20:12:16.000Z",
+              "uid": "35240-8ebe0422-2c62-4f8e-a5d3-e7e7f26dcb8e"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "38ed6f6f-cb07-41db-8b94-990c66150498",
+          "createdAt": "2026-10-21T20:12:16.000Z",
+          "updatedAt": "2026-10-21T20:12:16.000Z",
+          "uid": "35240-38ed6f6f-cb07-41db-8b94-990c66150498"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.vendr.com",
-      "key": "baseUrl"
+      "id": "a78bd0af-89e5-48a1-93f2-5683bc198229",
+      "createdAt": "2026-10-21T20:12:16.000Z",
+      "updatedAt": "2026-10-21T20:12:16.000Z",
+      "uid": "35240-a78bd0af-89e5-48a1-93f2-5683bc198229"
     }
   ],
   "auth": {
@@ -282,25 +308,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-API-Key"
+        "value": "X-API-Key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "54735b91-8c67-4c24-b1b8-95df92cf78bf",
-    "name": "Vendr OpenPrice Catalog Pricing API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Vendr OpenPrice API provides access to real SaaS pricing intelligence derived from 200,000+ verified software contracts across 20,000+ products. Embed fair price estimates, negotiation insights, product catalog data, and purchase scope management into your applications. Rate limits: 250 requests per minute, 150,000 requests per day.\n\nContact Support:\n Name: Vendr Developer Support\n Email: developers@vendr.com",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.vendr.com"
     }
-  }
+  ]
 }
